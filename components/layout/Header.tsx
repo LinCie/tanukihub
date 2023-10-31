@@ -62,73 +62,16 @@ const ThemeIcon = () => {
 
 const SidebarContent = () => {
   return (
-    <Accordion.Root type="multiple">
-      <Accordion.AccordionItem value="test" className="border-b-2">
+    <Accordion.Root type="multiple" className="w-64 dark:bg-gray-800">
+      <Accordion.AccordionItem value="test" className="border-b-2 dark:border-b-gray-800">
         <Accordion.AccordionHeader>
-          <Accordion.AccordionTrigger className="AccordionTrigger flex h-full w-full  items-center justify-between p-2">
+          <Accordion.AccordionTrigger className="AccordionTrigger flex h-full w-full items-center justify-between p-3 text-base">
             Hello World!
             <ChevronDownIcon className="AccordionChevron" aria-hidden />
           </Accordion.AccordionTrigger>
         </Accordion.AccordionHeader>
         <Accordion.AccordionContent className="AccordionContent">
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
-            Hi World!
-          </div>
-          <div className="p-2 pl-5">
+          <div className="p-3 pl-5 text-sm">
             Hi World!
           </div>
         </Accordion.AccordionContent>
@@ -224,7 +167,7 @@ const Header = () => {
   return (
     <>
       {/* Header section */}
-      <header className="fixed left-0 right-0 top-0 z-[100] flex h-14 flex-row items-center justify-between bg-[#CC3E3E] px-2 shadow-md dark:bg-gray-800 md:h-16">
+      <header className="fixed left-0 right-0 top-0 z-[100] flex h-14 flex-row items-center justify-between bg-[#CC3E3E] px-2 shadow-md dark:bg-gray-700 md:h-16">
         <div id="header-left-side" className="flex items-center gap-2">
           <div className="relative block md:hidden">
             <AnimatedSidebarToggle
@@ -260,7 +203,7 @@ const Header = () => {
       {/* Sidebar section */}
       <animated.nav
         style={sidebarSprings}
-        className={`fixed bottom-0 left-0 top-0 z-[99] h-screen w-64 border-r-2 bg-white pt-14 dark:border-r-gray-950 dark:bg-gray-900 md:pt-16 ${
+        className={`fixed bottom-0 left-0 top-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16 ${
           sidebarOpen ? "md:left-0" : "md:left-[256px]"
         }`}
         aria-live="polite"
