@@ -1,16 +1,20 @@
 "use client";
 
 // React Imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // NextJS Imports
 import Image from "next/image";
+
+// Next Theme
+import { useTheme } from "next-themes";
 
 // Radix UI Imports
 import {
   GitHubLogoIcon,
   HamburgerMenuIcon,
   Cross1Icon,
+  MoonIcon,
 } from "@radix-ui/react-icons";
 
 // Custom Component Imports
@@ -18,6 +22,42 @@ import IconButton from "@/components/IconButton";
 
 // React Spring Imports
 import { animated, useSpring } from "@react-spring/web";
+
+const ThemeIcon = () => {
+  const [mounted, setMounted] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true);
+    if (theme === "dark") {
+      setDarkMode(true);
+    }
+  }, []);
+
+  if (!mounted) {
+    return <IconButton icon={<MoonIcon />} className="text-white" />;
+  }
+
+  const handleThemeToggle = () => {
+    if (darkMode) {
+      setTheme("light");
+      setDarkMode(false);
+    } else {
+      setTheme("dark");
+      setDarkMode(true);
+    }
+  };
+
+  return (
+    <IconButton
+      icon={<MoonIcon />}
+      className={`${darkMode ? "text-yellow-400" : "text-white"}`}
+      onClick={handleThemeToggle}
+    />
+  );
+};
 
 const Header = () => {
   // State to manage the visibility of the sidebar
@@ -106,7 +146,7 @@ const Header = () => {
   return (
     <>
       {/* Header section */}
-      <header className="fixed left-0 right-0 top-0 z-[100] flex h-14 flex-row items-center justify-between bg-[#CC3E3E] px-2 shadow-md md:h-16">
+      <header className="fixed left-0 right-0 top-0 z-[100] flex h-14 flex-row items-center justify-between bg-[#CC3E3E] px-2 shadow-md dark:bg-gray-800 md:h-16">
         <div id="header-left-side" className="flex items-center gap-2">
           <div className="relative block md:hidden">
             <AnimatedSidebarToggle
@@ -133,13 +173,16 @@ const Header = () => {
             <div className="text-xl font-medium text-white">TanukiHub</div>
           </div>
         </div>
-        <IconButton icon={<GitHubLogoIcon />} className="text-white" />
+        <div className="flex gap-1">
+          <IconButton icon={<GitHubLogoIcon />} className="text-white" />
+          <ThemeIcon />
+        </div>
       </header>
 
       {/* Sidebar section */}
       <animated.nav
         style={sidebarSprings}
-        className={`fixed bottom-0 left-0 top-0 z-[99] h-screen w-64 border-r-2 bg-white pt-14 md:pt-16 ${
+        className={`fixed bottom-0 left-0 top-0 z-[99] h-screen w-64 border-r-2 bg-white pt-14 dark:border-r-gray-950 dark:bg-gray-900 md:pt-16 ${
           sidebarOpen ? "md:left-0" : "md:left-[256px]"
         }`}
         aria-live="polite"
@@ -154,7 +197,7 @@ const Header = () => {
         style={overlaySprings}
         onClick={handleSidebarOpen}
       ></animated.div>
-      <div className="h-[500vh]"></div>
+      <div className="h-[500vh] pl-64 pt-16"></div>
     </>
   );
 };

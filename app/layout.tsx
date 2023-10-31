@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import "./globals.css";
+import { Providers } from "./providers";
 
 import Header from "@/components/layout/Header";
 
@@ -36,10 +37,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={noto.className}>
-        <Header />
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${noto.className} bg-white dark:bg-gray-950`}>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
