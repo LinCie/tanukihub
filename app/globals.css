@@ -5,3 +5,39 @@
 * {
   -webkit-tap-highlight-color: transparent;
 }
+
+.AccordionContent {
+  overflow: hidden;
+  will-change: auto;
+}
+.AccordionContent[data-state='open'] {
+  animation: slideDown 300ms ease-in-out;
+}
+.AccordionContent[data-state='closed'] {
+  animation: slideUp 300ms ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.AccordionChevron {
+  transition: transform 300ms ease-in-out;
+}
+.AccordionTrigger[data-state='open'] > .AccordionChevron {
+  transform: rotate(180deg);
+}

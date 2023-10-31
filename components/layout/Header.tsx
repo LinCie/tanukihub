@@ -15,7 +15,9 @@ import {
   HamburgerMenuIcon,
   Cross1Icon,
   MoonIcon,
+  ChevronDownIcon,
 } from "@radix-ui/react-icons";
+import * as Accordion from "@radix-ui/react-accordion";
 
 // Custom Component Imports
 import IconButton from "@/components/IconButton";
@@ -28,7 +30,6 @@ const ThemeIcon = () => {
   const [darkMode, setDarkMode] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true);
     if (theme === "dark") {
@@ -56,6 +57,83 @@ const ThemeIcon = () => {
       className={`${darkMode ? "text-yellow-400" : "text-white"}`}
       onClick={handleThemeToggle}
     />
+  );
+};
+
+const SidebarContent = () => {
+  return (
+    <Accordion.Root type="multiple">
+      <Accordion.AccordionItem value="test" className="border-b-2">
+        <Accordion.AccordionHeader>
+          <Accordion.AccordionTrigger className="AccordionTrigger flex h-full w-full  items-center justify-between p-2">
+            Hello World!
+            <ChevronDownIcon className="AccordionChevron" aria-hidden />
+          </Accordion.AccordionTrigger>
+        </Accordion.AccordionHeader>
+        <Accordion.AccordionContent className="AccordionContent">
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+          <div className="p-2 pl-5">
+            Hi World!
+          </div>
+        </Accordion.AccordionContent>
+      </Accordion.AccordionItem>
+    </Accordion.Root>
   );
 };
 
@@ -187,8 +265,12 @@ const Header = () => {
         }`}
         aria-live="polite"
       >
-        <div className="h-full overflow-y-auto overflow-x-clip"></div>
+        {/* Sidebar Content */}
+        <div id="sidebar" className="h-full overflow-y-auto overflow-x-clip">
+          <SidebarContent />
+        </div>
       </animated.nav>
+      {/* Sidebar Overlay */}
       <animated.div
         className={`
           fixed z-[98] h-screen w-screen overflow-auto bg-black md:hidden ${
@@ -196,7 +278,7 @@ const Header = () => {
           }`}
         style={overlaySprings}
         onClick={handleSidebarOpen}
-      ></animated.div>
+      />
       <div className="h-[500vh] pl-64 pt-16"></div>
     </>
   );
