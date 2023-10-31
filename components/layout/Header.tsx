@@ -80,8 +80,13 @@ const SidebarContent = () => {
             <Accordion.AccordionContent className="AccordionContent">
               {page.contents.map((link) => {
                 return (
-                  <Link href={`${page.root}/${link.link}`} className="block p-3 pl-5 text-sm">{link.name}</Link>
-                )
+                  <Link
+                    href={`${page.root}/${link.link}`}
+                    className="block p-3 pl-8 text-sm last-of-type:pb-6 hover:underline"
+                  >
+                    {link.name}
+                  </Link>
+                );
               })}
             </Accordion.AccordionContent>
           </Accordion.AccordionItem>
