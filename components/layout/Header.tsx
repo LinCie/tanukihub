@@ -68,6 +68,7 @@ const SidebarContent = () => {
       {pages.map((page) => {
         return (
           <Accordion.AccordionItem
+            key={page.level}
             value={page.level}
             className="border-b-2 dark:border-b-gray-800"
           >
@@ -81,6 +82,7 @@ const SidebarContent = () => {
               {page.contents.map((link) => {
                 return (
                   <Link
+                    key={link.name}
                     href={`${page.root}/${link.link}`}
                     className="block p-3 pl-8 text-sm last-of-type:pb-6 hover:underline"
                   >
