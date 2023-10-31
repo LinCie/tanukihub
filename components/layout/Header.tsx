@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 // NextJS Imports
 import Image from "next/image";
+import Link from "next/link";
 
 // Next Theme
 import { useTheme } from "next-themes";
@@ -24,6 +25,7 @@ import IconButton from "@/components/IconButton";
 
 // React Spring Imports
 import { animated, useSpring } from "@react-spring/web";
+import { pages } from "../pages";
 
 const ThemeIcon = () => {
   const [mounted, setMounted] = useState(false);
@@ -63,19 +65,28 @@ const ThemeIcon = () => {
 const SidebarContent = () => {
   return (
     <Accordion.Root type="multiple" className="w-64 dark:bg-gray-800">
-      <Accordion.AccordionItem value="test" className="border-b-2 dark:border-b-gray-800">
-        <Accordion.AccordionHeader>
-          <Accordion.AccordionTrigger className="AccordionTrigger flex h-full w-full items-center justify-between p-3 text-base">
-            Hello World!
-            <ChevronDownIcon className="AccordionChevron" aria-hidden />
-          </Accordion.AccordionTrigger>
-        </Accordion.AccordionHeader>
-        <Accordion.AccordionContent className="AccordionContent">
-          <div className="p-3 pl-5 text-sm">
-            Hi World!
-          </div>
-        </Accordion.AccordionContent>
-      </Accordion.AccordionItem>
+      {pages.map((page) => {
+        return (
+          <Accordion.AccordionItem
+            value={page.level}
+            className="border-b-2 dark:border-b-gray-800"
+          >
+            <Accordion.AccordionHeader>
+              <Accordion.AccordionTrigger className="AccordionTrigger flex h-full w-full items-center justify-between p-3 text-base">
+                {page.level}
+                <ChevronDownIcon className="AccordionChevron" aria-hidden />
+              </Accordion.AccordionTrigger>
+            </Accordion.AccordionHeader>
+            <Accordion.AccordionContent className="AccordionContent">
+              {page.contents.map((link) => {
+                return (
+                  <Link href={`${page.root}/${link.link}`} className="block p-3 pl-5 text-sm">{link.name}</Link>
+                )
+              })}
+            </Accordion.AccordionContent>
+          </Accordion.AccordionItem>
+        );
+      })}
     </Accordion.Root>
   );
 };
@@ -183,7 +194,7 @@ const Header = () => {
               className="absolute left-0 top-0 text-white"
             />
           </div>
-          <div className="flex select-none items-center gap-1">
+          <Link href="/" className="flex select-none items-center gap-1">
             <Image
               src="/logo.jpg"
               alt="TanukiHub"
@@ -192,10 +203,12 @@ const Header = () => {
               className="h-8 w-8"
             />
             <div className="text-xl font-medium text-white">TanukiHub</div>
-          </div>
+          </Link>
         </div>
         <div className="flex gap-1">
-          <IconButton icon={<GitHubLogoIcon />} className="text-white" />
+          <Link href="https://github.com/LinCie/tanukihub" target="_blank">
+            <IconButton icon={<GitHubLogoIcon />} className="text-white" />
+          </Link>
           <ThemeIcon />
         </div>
       </header>
@@ -222,7 +235,6 @@ const Header = () => {
         style={overlaySprings}
         onClick={handleSidebarOpen}
       />
-      <div className="h-[500vh] pl-64 pt-16"></div>
     </>
   );
 };
