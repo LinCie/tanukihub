@@ -117,7 +117,7 @@ const Header = () => {
 
   // Animation configuration for the sidebar
   const [sidebarSprings, sidebarApi] = useSpring(() => ({
-    from: { x: -256 }, // Initial position of the sidebar
+    from: { x: -300 }, // Initial position of the sidebar
   }));
 
   // Animated Sidenar Toggle button component
@@ -155,8 +155,8 @@ const Header = () => {
     }
     // Animate the sidebar position
     sidebarApi.start({
-      from: { x: sidebarOpen ? 0 : -256 },
-      to: { x: sidebarOpen ? -256 : 0 },
+      from: { x: sidebarOpen ? 0 : -300 },
+      to: { x: sidebarOpen ? -300 : 0 },
       config: sidebarAnimConfig,
     });
     // Animate the hamburger button rotation and opacity
@@ -237,7 +237,7 @@ const Header = () => {
       <animated.nav
         style={sidebarSprings}
         className={`fixed bottom-0 left-0 top-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16 ${
-          sidebarOpen ? "md:left-0" : "md:left-[256px]"
+          sidebarOpen ? "md:left-0" : "md:left-[300px]"
         }`}
         aria-live="polite"
       >
