@@ -41,7 +41,9 @@ export default function RootLayout({
       <body className={`${noto.className} bg-white dark:bg-gray-950`}>
         <Providers>
           <Header />
-          {children}
+          <main id="content" className="ml-0 mt-14 min-h-screen p-10 md:ml-64 md:mt-16">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
