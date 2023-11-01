@@ -64,7 +64,7 @@ const ThemeIcon = () => {
 
 const SidebarContent = () => {
   return (
-    <Accordion.Root type="multiple" className="w-64 dark:bg-gray-800">
+    <Accordion.Root type="multiple" className="w-64 dark:bg-gray-800 text-black dark:text-white">
       {pages.map((page) => {
         return (
           <Accordion.AccordionItem
