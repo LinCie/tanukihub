@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 // NextJS Imports
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
 // Next Theme
 import { useTheme } from "next-themes";
@@ -64,11 +64,15 @@ const ThemeIcon = () => {
 };
 
 const SidebarContent = () => {
-  const pathname = usePathname()
-  const urlRoot = pathname.split('/')
+  const pathname = usePathname();
+  const urlRoot = pathname.split("/");
 
   return (
-    <Accordion.Root type="multiple" className="w-64 dark:bg-gray-800 text-black dark:text-white" defaultValue={[urlRoot[1]]}>
+    <Accordion.Root
+      type="multiple"
+      className="w-64 text-black dark:bg-gray-800 dark:text-white"
+      defaultValue={[urlRoot[1]]}
+    >
       {pages.map((page) => {
         return (
           <Accordion.AccordionItem
@@ -84,12 +88,16 @@ const SidebarContent = () => {
             </Accordion.AccordionHeader>
             <Accordion.AccordionContent className="AccordionContent">
               {page.contents.map((link) => {
-                const pageLink = `/${page.root}/${link.link}`
+                const pageLink = `/${page.root}/${link.link}`;
                 return (
                   <Link
                     key={link.name}
                     href={pageLink}
-                    className={`block p-3 pl-8 text-sm last-of-type:pb-6 hover:underline ${pathname === pageLink ? "text-[#CC3E3E] font-medium dark:text-white" : ""}`}
+                    className={`block p-3 pl-8 text-sm last-of-type:pb-6 hover:underline ${
+                      pathname === pageLink
+                        ? "font-medium text-[#CC3E3E] dark:text-white"
+                        : ""
+                    }`}
                   >
                     {link.name}
                   </Link>
