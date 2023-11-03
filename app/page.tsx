@@ -16,14 +16,14 @@ export default function Home() {
       <Paragraph>
         Learning a new language can be a thrilling adventure, and Japanese is no
         exception. Whether you're a complete beginner or already have some
-        knowledge of the language, KitsuKorner is here to guide you every step
+        knowledge of the language, TanukiHub is here to guide you every step
         of the way. Our mission is to make your Japanese learning experience
         both enjoyable and effective.
       </Paragraph>
       <Paragraph>
         Learning a new language can be a thrilling adventure, and Japanese is no
         exception. Whether you're a complete beginner or already have some
-        knowledge of the language, KitsuKorner is here to guide you every step
+        knowledge of the language, TanukiHub is here to guide you every step
         of the way. Our mission is to make your Japanese learning experience
         both enjoyable and effective.
       </Paragraph>
