@@ -1,9 +1,6 @@
-// Radix UI Imports
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 // Custom Component Imports
 import PageTitle from "@/components/typography/PageTitle";
 import Paragraph from "@/components/typography/Paragraph";
-import Link from "next/link";
 import BottomNavigation from "@/components/navigation/BottomNavigation";
 import BottomNavigationLink from "@/components/navigation/BottomNavigationLink";
 
