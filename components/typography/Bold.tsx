@@ -1,8 +1,7 @@
-import { ReactNode, HTMLAttributes } from "react";
+import { ReactNode, ComponentPropsWithoutRef } from "react";
 
-interface Props extends HTMLAttributes<HTMLSpanElement> {
+interface Props extends ComponentPropsWithoutRef<"span"> {
   children?: ReactNode;
-  className?: string;
 }
 
 export default function Bold({ children, className, ...props }: Props) {

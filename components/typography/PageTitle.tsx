@@ -1,7 +1,6 @@
-import { ReactNode, HTMLAttributes } from "react";
+import { ReactNode, ComponentPropsWithoutRef } from "react";
 
-interface Props extends HTMLAttributes<HTMLHeadingElement> {
-  className?: string;
+interface Props extends ComponentPropsWithoutRef<"h1"> {
   children?: ReactNode;
 }
 

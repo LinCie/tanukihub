@@ -1,8 +1,7 @@
-import { ReactNode, HTMLAttributes } from "react";
+import { ReactNode, ComponentPropsWithoutRef } from "react";
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+interface Props extends ComponentPropsWithoutRef<"div"> {
   children?: ReactNode;
-  className?: string;
 }
 
 export default function BottomNavigation({
