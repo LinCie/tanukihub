@@ -14,7 +14,10 @@ export default function List({
   ...props
 }: Props) {
   return (
-    <ul className={`list-${type} list-${position}`} {...props}>
+    <ul
+      className={`list-${type} list-${position} ${className}`.trim()}
+      {...props}
+    >
       {children}
     </ul>
   );
