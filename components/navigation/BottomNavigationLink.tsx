@@ -20,13 +20,15 @@ export default function BottomNavigationLink({
   href,
   ...props
 }: Props) {
+  const customClass = className ? className : "";
+
   return (
     <Link
       href={href}
       id={right ? "navigation-next" : "navigation-previous"}
       className={`flex items-center justify-between gap-2 text-xs font-medium text-[#CC3E3E] hover:underline dark:text-white sm:text-sm ${
         right ? "flex-row" : "flex-row-reverse"
-      } ${className}`.trim()}
+      } ${customClass}`.trim()}
       {...props}
     >
       <div className="max-w-[150px] overflow-clip sm:max-w-[500px]">

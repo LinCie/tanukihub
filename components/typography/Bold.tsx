@@ -5,8 +5,10 @@ interface Props extends ComponentPropsWithoutRef<"span"> {
 }
 
 export default function Bold({ children, className, ...props }: Props) {
+  const customClass = className ? className : "";
+
   return (
-    <span className={`font-bold ${className}`.trim()} {...props}>
+    <span className={`font-bold ${customClass}`.trim()} {...props}>
       {children}
     </span>
   );

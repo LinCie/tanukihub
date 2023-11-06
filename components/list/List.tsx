@@ -13,9 +13,11 @@ export default function List({
   className,
   ...props
 }: Props) {
+  const customClass = className ? className : "";
+
   return (
     <ul
-      className={`list-${type} list-${position} ${className}`.trim()}
+      className={`list-${type} list-${position} ${customClass}`.trim()}
       {...props}
     >
       {children}

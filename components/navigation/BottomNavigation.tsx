@@ -9,10 +9,12 @@ export default function BottomNavigation({
   className,
   ...props
 }: Props) {
+  const customClass = className ? className : "";
+
   return (
     <div
       id="bottom-navigation"
-      className={`my-10 flex w-full select-none items-center justify-between ${className}`.trim()}
+      className={`my-10 flex w-full select-none items-center justify-between ${customClass}`.trim()}
       {...props}
     >
       {children}
