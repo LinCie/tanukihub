@@ -2,7 +2,7 @@ import { ReactNode, ComponentPropsWithoutRef } from "react";
 
 interface Props extends ComponentPropsWithoutRef<"ul"> {
   children?: ReactNode;
-  type: "disc" | "decimal" | "none";
+  type: "disc" | "decimal";
   position: "inside" | "outside";
 }
 
@@ -15,9 +15,12 @@ export default function List({
 }: Props) {
   const customClass = className ? className : "";
 
+  const listType = type === "disc" ? "list-disc" : "list-decimal";
+  const listPosition = position === "inside" ? "list-inside" : "list-outside";
+
   return (
     <ul
-      className={`list-${type} list-${position} ${customClass}`.trim()}
+      className={`${listType} ${listPosition} ${customClass}`.trim()}
       {...props}
     >
       {children}
