@@ -9,7 +9,7 @@ export default function Paragraph({ className, children, ...props }: Props) {
 
   return (
     <p
-      className={`mb-2 text-sm text-black dark:text-white sm:mb-3 sm:text-base ${customClass}`.trim()}
+      className={`mb-2 text-sm text-black dark:text-white sm:mb-3 sm:text-base last-of-type:mb-4 last-of-type:sm:mb-5 ${customClass}`.trim()}
       {...props}
     >
       {children}
