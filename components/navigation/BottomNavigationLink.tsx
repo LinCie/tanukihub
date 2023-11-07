@@ -1,5 +1,5 @@
 // React Imports
-import { ReactNode } from "react";
+import { ReactNode, ComponentPropsWithoutRef } from "react";
 
 // NextJS Imports
 import Link, { LinkProps } from "next/link";
@@ -7,9 +7,8 @@ import Link, { LinkProps } from "next/link";
 // Radix UI Imports
 import { ArrowRightIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 
-interface Props extends LinkProps {
+interface Props extends LinkProps, Omit<ComponentPropsWithoutRef<"a">, keyof LinkProps> {
   children?: ReactNode;
-  className?: string;
   right?: boolean;
 }
 
