@@ -49,6 +49,11 @@ export const pages = [
   {
     level: "Tools",
     root: "tools",
-    contents: []
+    contents: [
+      {
+        name: "Kanji Search", 
+        link: "kanji-search",
+      }
+    ]
   }
 ]
