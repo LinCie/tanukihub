@@ -203,12 +203,12 @@ interface CharacterDisplayProps {
 }
 
 const CharacterDisplay = ({ character, loading }: CharacterDisplayProps) => {
-  if (!character) {
-    return null;
-  }
-
   if (loading) {
     return <CharacterDisplayLoading />;
+  }
+
+  if (!character) {
+    return null;
   }
 
   return (
