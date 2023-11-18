@@ -45,7 +45,7 @@ const SearchForm = ({ setCharacter, setLoading }: SearchFormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mb-4 flex rounded-md border-2 border-[#CC3E3E] dark:border-white"
+      className="mb-4 flex rounded-md border-2 border-[#CC3E3E] dark:border-white md:mb-6 lg:mb-8"
     >
       <input
         {...register("kanji")}
@@ -72,7 +72,7 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
   );
 
   return (
-    <div className="mb-5">
+    <div className="mb-5 lg:flex-[3]">
       <div id="kanji-character" className="mb-4 flex justify-center">
         <div id="kanji-character-container" className="h-32 w-32">
           <div id="kanji-character-text" className="select-none text-9xl">
@@ -81,7 +81,7 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
         </div>
       </div>
       <div className="flex flex-col">
-        <div id="kanji-meaning" className="text-center text-3xl">
+        <div id="kanji-meaning" className="text-center text-2xl lg:text-xl">
           {meanings.join(", ")}
         </div>
       </div>
@@ -117,10 +117,29 @@ const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
   );
 };
 
-const MiscDisplay = () => {
+interface MiscDisplayProps {
+  character: KanjiCharacter;
+}
+
+const MiscDisplay = ({ character }: MiscDisplayProps) => {
+  const grade: number = character.misc.grade;
+  const level: number = character.misc.jlptLevel + 1;
+  
   return (
     <div id="misc-display" className="flex-1">
-      <h2 className="mb-2 text-lg font-bold">miscellaneous</h2>
+      <h2 className="mb-2 text-lg font-bold">Miscellaneous</h2>
+        {grade ? (
+          <div className="mb-1 flex gap-2">
+            <div>Taught in: </div>
+            <div className="font-bold">Grade {grade.toString()}</div>
+          </div>
+        ) : null}
+        {level ? (
+          <div className="mb-1 flex gap-2">
+            <div>JLPT Level: </div>
+            <div className="font-bold">N{level.toString()}</div>
+          </div>
+        ) : null}
     </div>
   );
 };
@@ -141,10 +160,11 @@ const CharacterDisplay = ({ character, loading }: CharacterDisplayProps) => {
 
   return (
     <section id="character-display">
-      <div id="top-display" className="flex flex-col">
+      <div id="top-display" className="flex flex-col lg:flex-row lg:gap-2">
         <KanjIDisplay character={character} />
-        <div className="flex flex-col">
+        <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
           <ReadingDisplay character={character} />
+          <MiscDisplay character={character} />
         </div>
       </div>
     </section>
