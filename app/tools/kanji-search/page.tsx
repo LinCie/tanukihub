@@ -90,7 +90,7 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
 };
 
 interface ReadingDisplayProps {
-  character: KanjiCharacter
+  character: KanjiCharacter;
 }
 
 const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
@@ -103,7 +103,7 @@ const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
     .map((r) => r.value);
 
   return (
-    <div id="reading-display" className="flex flex-1 flex-col">
+    <div id="reading-display" className="mb-5 flex flex-1 flex-col">
       <h2 className="mb-2 text-lg font-bold">Readings</h2>
       <div id="kunyomi-display" className="mb-1 flex gap-2">
         <div>Kun:</div>
@@ -113,6 +113,14 @@ const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
         <div>On:</div>
         <div>{onyomi.join("、 ")}</div>
       </div>
+    </div>
+  );
+};
+
+const MiscDisplay = () => {
+  return (
+    <div id="misc-display" className="flex-1">
+      <h2 className="mb-2 text-lg font-bold">miscellaneous</h2>
     </div>
   );
 };
@@ -137,7 +145,6 @@ const CharacterDisplay = ({ character, loading }: CharacterDisplayProps) => {
         <KanjIDisplay character={character} />
         <div className="flex flex-col">
           <ReadingDisplay character={character} />
-          <div className="flex-1"></div>
         </div>
       </div>
     </section>
