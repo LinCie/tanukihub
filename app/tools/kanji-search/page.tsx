@@ -63,17 +63,20 @@ const SearchForm = ({ setCharacter, setLoading }: SearchFormProps) => {
 };
 
 interface KanjIDisplayProps {
-  character: string;
-  meanings: string[];
+  character: KanjiCharacter;
 }
 
-const KanjIDisplay = ({ character, meanings }: KanjIDisplayProps) => {
+const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
+  const meanings: string[] = character.readingMeaning.groups.flatMap((group) =>
+    group.meanings.map((m) => m.value),
+  );
+
   return (
     <div className="mb-5">
       <div id="kanji-character" className="mb-4 flex justify-center">
         <div id="kanji-character-container" className="h-32 w-32">
           <div id="kanji-character-text" className="select-none text-9xl">
-            {character}
+            {character.literal}
           </div>
         </div>
       </div>
@@ -136,7 +139,7 @@ const CharacterDisplay = ({ character, loading }: CharacterDisplayProps) => {
   return (
     <section id="character-display">
       <div id="top-display" className="flex flex-col">
-        <KanjIDisplay character={character.literal} meanings={meanings} />
+        <KanjIDisplay character={character} />
         <div className="flex flex-col">
           <ReadingDisplay onyomi={onyomi} kunyomi={kunyomi} />
           <div className="flex-1"></div>
