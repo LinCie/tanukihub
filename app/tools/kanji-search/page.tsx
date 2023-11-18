@@ -10,11 +10,6 @@ import { KanjiCharacter } from "@/components/dictionaries/kanjidic";
 
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
-// const dataMeanings: string[] =
-//  data.character.readingMeaning.groups.flatMap((group) =>
-//    group.meanings.map((m) => m.value),
-//  );
-
 interface Inputs {
   kanji: string;
 }
@@ -67,6 +62,51 @@ const SearchForm = ({ setCharacter, setLoading }: SearchFormProps) => {
   );
 };
 
+interface KanjIDisplayProps {
+  character: string;
+  meanings: string[];
+}
+
+const KanjIDisplay = ({ character, meanings }: KanjIDisplayProps) => {
+  return (
+    <div className="mb-5">
+      <div id="kanji-character" className="mb-4 flex justify-center">
+        <div id="kanji-character-container" className="h-32 w-32">
+          <div id="kanji-character-text" className="select-none text-9xl">
+            {character}
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <div id="kanji-meaning" className="text-center text-3xl">
+          {meanings.join(", ")}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface ReadingDisplayProps {
+  kunyomi: string[];
+  onyomi: string[];
+}
+
+const ReadingDisplay = ({ kunyomi, onyomi }: ReadingDisplayProps) => {
+  return (
+    <div id="reading-display" className="flex flex-1 flex-col">
+      <h2 className="mb-2 text-lg font-bold">Readings</h2>
+      <div id="kunyomi-display" className="mb-1 flex gap-2">
+        <div>Kun:</div>
+        <div>{kunyomi.join("、 ")}</div>
+      </div>
+      <div id="onyomi-display" className="flex gap-2">
+        <div>On:</div>
+        <div>{onyomi.join("、 ")}</div>
+      </div>
+    </div>
+  );
+};
+
 interface CharacterDisplayProps {
   character: KanjiCharacter | undefined;
   loading: boolean;
@@ -81,20 +121,25 @@ const CharacterDisplay = ({ character, loading }: CharacterDisplayProps) => {
     return null;
   }
 
-  const meanings = character.readingMeaning.groups.flatMap((group) =>
+  const meanings: string[] = character.readingMeaning.groups.flatMap((group) =>
     group.meanings.map((m) => m.value),
   );
+
+  const kunyomi: string[] = character.readingMeaning.groups
+    .flatMap((group) => group.readings.filter((r) => r.type === "ja_kun"))
+    .map((r) => r.value);
+
+  const onyomi: string[] = character.readingMeaning.groups
+    .flatMap((group) => group.readings.filter((r) => r.type === "ja_on"))
+    .map((r) => r.value);
 
   return (
     <section id="character-display">
       <div id="top-display" className="flex flex-col">
-        <div id="kanji-character">
-          <div className="select-none text-center text-9xl">
-            {character.literal}
-          </div>
-        </div>
+        <KanjIDisplay character={character.literal} meanings={meanings} />
         <div className="flex flex-col">
-          <div id="kanji-meaning">{meanings.join(", ")}</div>
+          <ReadingDisplay onyomi={onyomi} kunyomi={kunyomi} />
+          <div className="flex-1"></div>
         </div>
       </div>
     </section>
