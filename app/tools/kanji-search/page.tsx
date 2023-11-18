@@ -10,6 +10,9 @@ import { KanjiCharacter } from "@/components/dictionaries/kanjidic";
 
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
+import { animated, useSpring } from "@react-spring/web";
+import Link from "next/link";
+
 interface Inputs {
   kanji: string;
 }
@@ -124,23 +127,73 @@ interface MiscDisplayProps {
 const MiscDisplay = ({ character }: MiscDisplayProps) => {
   const grade: number = character.misc.grade;
   const level: number = character.misc.jlptLevel + 1;
-  
+
   return (
     <div id="misc-display" className="flex-1">
       <h2 className="mb-2 text-lg font-bold">Miscellaneous</h2>
-        {grade ? (
-          <div className="mb-1 flex gap-2">
-            <div>Taught in: </div>
-            <div className="font-bold">Grade {grade.toString()}</div>
-          </div>
-        ) : null}
-        {level ? (
-          <div className="mb-1 flex gap-2">
-            <div>JLPT Level: </div>
-            <div className="font-bold">N{level.toString()}</div>
-          </div>
-        ) : null}
+      {grade ? (
+        <div className="mb-1 flex gap-2">
+          <div>Taught in: </div>
+          <div className="font-bold">Grade {grade.toString()}</div>
+        </div>
+      ) : null}
+      {level ? (
+        <div className="mb-1 flex gap-2">
+          <div>JLPT Level: </div>
+          <div className="font-bold">N{level.toString()}</div>
+        </div>
+      ) : null}
     </div>
+  );
+};
+
+const CharacterDisplayLoading = () => {
+  const springs = useSpring({
+    loop: { reverse: true },
+    from: { opacity: 1 },
+    to: { opacity: 0.5 },
+    config: { duration: 1000, tension: 120, friction: 14 },
+  });
+
+  return (
+    <animated.section id="character-display-loading" style={springs} className="mb-10">
+      <div id="top-display" className="flex flex-col lg:flex-row lg:gap-2">
+        <div id="kanji-display" className="mb-5 flex flex-col lg:flex-[3]">
+          <div className="mb-4 h-32 w-full bg-gray-200 dark:bg-gray-900 rounded" />
+          <div className="h-16 w-full bg-gray-200 dark:bg-gray-900 rounded" />
+        </div>
+        <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
+          <div id="reading-display" className="mb-5 flex flex-1 flex-col">
+            <div
+              id="reading-title"
+              className="mb-2 h-5 w-full bg-gray-200 dark:bg-gray-900 rounded"
+            />
+            <div
+              id="reading-kunyomi"
+              className="mb-1 h-10 w-full bg-gray-200 dark:bg-gray-900 rounded"
+            />
+            <div
+              id="reading-onyomi"
+              className="h-10 w-full bg-gray-200 dark:bg-gray-900 rounded"
+            />
+          </div>
+          <div id="misc-display" className="flex flex-1 flex-col">
+            <div
+              id="misc-title"
+              className="mb-2 h-5 w-full bg-gray-200 dark:bg-gray-900 rounded"
+            />
+            <div
+              id="grade"
+              className="mb-1 h-10 w-full bg-gray-200 dark:bg-gray-900 rounded"
+            />
+            <div
+              id="jlpt"
+              className="h-10 w-full bg-gray-200 dark:bg-gray-900 rounded"
+            />
+          </div>
+        </div>
+      </div>
+    </animated.section>
   );
 };
 
@@ -155,11 +208,11 @@ const CharacterDisplay = ({ character, loading }: CharacterDisplayProps) => {
   }
 
   if (loading) {
-    return null;
+    return <CharacterDisplayLoading />;
   }
 
   return (
-    <section id="character-display">
+    <section id="character-display" className="mb-10">
       <div id="top-display" className="flex flex-col lg:flex-row lg:gap-2">
         <KanjIDisplay character={character} />
         <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
@@ -188,6 +241,26 @@ export default function KanjiSearch() {
       <PageTitle>Kanji Search</PageTitle>
       <SearchForm setCharacter={handleCharacter} setLoading={handleLoading} />
       <CharacterDisplay loading={loading} character={character} />
+      <div id="attribution">
+        <p>
+          TanukiHub's kanji search uses{" "}
+          <Link
+            href="https://www.edrdg.org/wiki/index.php/KANJIDIC_Project"
+            target="_blank"
+            className="font-bold text-[#CC3E3E] hover:underline dark:text-white"
+          >
+            Kanjidic
+          </Link>{" "}
+          that has been{" "}
+          <Link
+            href="https://github.com/scriptin/jmdict-simplified"
+            target="_blank"
+            className="font-bold text-[#CC3E3E] hover:underline dark:text-white"
+          >
+            Simplified
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
