@@ -90,11 +90,18 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
 };
 
 interface ReadingDisplayProps {
-  kunyomi: string[];
-  onyomi: string[];
+  character: KanjiCharacter
 }
 
-const ReadingDisplay = ({ kunyomi, onyomi }: ReadingDisplayProps) => {
+const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
+  const kunyomi: string[] = character.readingMeaning.groups
+    .flatMap((group) => group.readings.filter((r) => r.type === "ja_kun"))
+    .map((r) => r.value);
+
+  const onyomi: string[] = character.readingMeaning.groups
+    .flatMap((group) => group.readings.filter((r) => r.type === "ja_on"))
+    .map((r) => r.value);
+
   return (
     <div id="reading-display" className="flex flex-1 flex-col">
       <h2 className="mb-2 text-lg font-bold">Readings</h2>
@@ -124,24 +131,12 @@ const CharacterDisplay = ({ character, loading }: CharacterDisplayProps) => {
     return null;
   }
 
-  const meanings: string[] = character.readingMeaning.groups.flatMap((group) =>
-    group.meanings.map((m) => m.value),
-  );
-
-  const kunyomi: string[] = character.readingMeaning.groups
-    .flatMap((group) => group.readings.filter((r) => r.type === "ja_kun"))
-    .map((r) => r.value);
-
-  const onyomi: string[] = character.readingMeaning.groups
-    .flatMap((group) => group.readings.filter((r) => r.type === "ja_on"))
-    .map((r) => r.value);
-
   return (
     <section id="character-display">
       <div id="top-display" className="flex flex-col">
         <KanjIDisplay character={character} />
         <div className="flex flex-col">
-          <ReadingDisplay onyomi={onyomi} kunyomi={kunyomi} />
+          <ReadingDisplay character={character} />
           <div className="flex-1"></div>
         </div>
       </div>
