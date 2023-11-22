@@ -54,21 +54,21 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
       onSubmit={handleSubmit(onSubmit)}
       className="mb-4 flex rounded-md border-2 border-[#CC3E3E] dark:border-white md:mb-6 lg:mb-8"
     >
-      <select {...register("lang", { required: true })}>
-        <option value="en">EN</option>
-        <option value="jp">JP</option>
-      </select>
-      {watchLang === "jp" && (
-        <select {...register("by", { required: true })}>
-          <option value="kanji">Kanji</option>
-          <option value="kana">Kana</option>
-        </select>
-      )}
       <input
         {...register("search", { required: true })}
         autoComplete="off"
         className="min-w-0 flex-1 bg-transparent px-2 focus:border-0 focus:outline-none dark:bg-transparent"
       />
+      {watchLang === "jp" && (
+        <select className="bg-transparent w-16 px-2 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" {...register("by", { required: true })}>
+          <option value="kanji">Kanji</option>
+          <option value="kana">Kana</option>
+        </select>
+      )}
+      <select className="bg-transparent w-12 px-2 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" {...register("lang", { required: true })}>
+        <option value="en">EN</option>
+        <option value="jp">JP</option>
+      </select>
       <button
         type="submit"
         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
