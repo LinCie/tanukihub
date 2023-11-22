@@ -14,29 +14,33 @@ import { animated, useSpring } from "@react-spring/web";
 import Link from "next/link";
 
 interface Inputs {
-  kanji: string;
+  lang: "en" | "jp";
+  by: "kanji" | "kana";
+  search: string;
 }
 
 interface ResponseData {
-  character: KanjiCharacter;
+  characters: KanjiCharacter[];
 }
 
 interface SearchFormProps {
-  setCharacter: (character: KanjiCharacter) => void;
+  setCharacters: (characters: KanjiCharacter[]) => void;
   setLoading: (state: boolean) => void;
 }
 
-const SearchForm = ({ setCharacter, setLoading }: SearchFormProps) => {
-  const { register, handleSubmit } = useForm<Inputs>();
+const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
+  const { register, handleSubmit, watch } = useForm<Inputs>();
+
+  const watchLang = watch("lang", "en")
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     try {
       setLoading(true);
-      const response = await instance.get(`/kanji?kanji=${inputs.kanji}`);
+      const response = await instance.get(`/kanji`, { params: inputs });
       const data: ResponseData = response.data;
 
-      if (data.character) {
-        setCharacter(data.character);
+      if (data.characters) {
+        setCharacters(data.characters);
       }
     } catch (err) {
       console.log(err);
@@ -51,10 +55,20 @@ const SearchForm = ({ setCharacter, setLoading }: SearchFormProps) => {
       className="mb-4 flex rounded-md border-2 border-[#CC3E3E] dark:border-white md:mb-6 lg:mb-8"
     >
       <input
-        {...register("kanji")}
+        {...register("search", { required: true })}
         autoComplete="off"
         className="min-w-0 flex-1 bg-transparent px-2 focus:border-0 focus:outline-none dark:bg-transparent"
       />
+      {watchLang === "jp" && (
+        <select className="bg-transparent w-16 px-2 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" {...register("by", { required: true })}>
+          <option value="kanji">Kanji</option>
+          <option value="kana">Kana</option>
+        </select>
+      )}
+      <select className="bg-transparent w-12 px-2 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" {...register("lang", { required: true })}>
+        <option value="en">EN</option>
+        <option value="jp">JP</option>
+      </select>
       <button
         type="submit"
         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -131,18 +145,18 @@ const MiscDisplay = ({ character }: MiscDisplayProps) => {
   return (
     <div id="misc-display" className="flex-1">
       <h2 className="mb-2 text-lg font-bold">Miscellaneous</h2>
-      {grade ? (
+      {grade && (
         <div className="mb-1 flex gap-2">
           <div>Taught in: </div>
           <div className="font-bold">Grade {grade.toString()}</div>
         </div>
-      ) : null}
-      {level ? (
+      )}
+      {level && (
         <div className="mb-1 flex gap-2">
           <div>JLPT Level: </div>
           <div className="font-bold">N{level.toString()}</div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 };
@@ -156,39 +170,43 @@ const CharacterDisplayLoading = () => {
   });
 
   return (
-    <animated.section id="character-display-loading" style={springs} className="mb-10">
+    <animated.section
+      id="character-display-loading"
+      style={springs}
+      className="mb-10"
+    >
       <div id="top-display" className="flex flex-col lg:flex-row lg:gap-2">
         <div id="kanji-display" className="mb-5 flex flex-col lg:flex-[3]">
-          <div className="mb-4 h-32 w-full bg-gray-200 dark:bg-gray-900 rounded" />
-          <div className="h-16 w-full bg-gray-200 dark:bg-gray-900 rounded" />
+          <div className="mb-4 h-32 w-full rounded bg-gray-200 dark:bg-gray-900" />
+          <div className="h-16 w-full rounded bg-gray-200 dark:bg-gray-900" />
         </div>
         <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
           <div id="reading-display" className="mb-5 flex flex-1 flex-col">
             <div
               id="reading-title"
-              className="mb-2 h-5 w-full bg-gray-200 dark:bg-gray-900 rounded"
+              className="mb-2 h-5 w-full rounded bg-gray-200 dark:bg-gray-900"
             />
             <div
               id="reading-kunyomi"
-              className="mb-1 h-10 w-full bg-gray-200 dark:bg-gray-900 rounded"
+              className="mb-1 h-10 w-full rounded bg-gray-200 dark:bg-gray-900"
             />
             <div
               id="reading-onyomi"
-              className="h-10 w-full bg-gray-200 dark:bg-gray-900 rounded"
+              className="h-10 w-full rounded bg-gray-200 dark:bg-gray-900"
             />
           </div>
           <div id="misc-display" className="flex flex-1 flex-col">
             <div
               id="misc-title"
-              className="mb-2 h-5 w-full bg-gray-200 dark:bg-gray-900 rounded"
+              className="mb-2 h-5 w-full rounded bg-gray-200 dark:bg-gray-900"
             />
             <div
               id="grade"
-              className="mb-1 h-10 w-full bg-gray-200 dark:bg-gray-900 rounded"
+              className="mb-1 h-10 w-full rounded bg-gray-200 dark:bg-gray-900"
             />
             <div
               id="jlpt"
-              className="h-10 w-full bg-gray-200 dark:bg-gray-900 rounded"
+              className="h-10 w-full rounded bg-gray-200 dark:bg-gray-900"
             />
           </div>
         </div>
@@ -199,48 +217,51 @@ const CharacterDisplayLoading = () => {
 
 interface CharacterDisplayProps {
   character: KanjiCharacter | undefined;
-  loading: boolean;
 }
 
-const CharacterDisplay = ({ character, loading }: CharacterDisplayProps) => {
-  if (loading) {
-    return <CharacterDisplayLoading />;
-  }
-
+const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
   if (!character) {
     return null;
   }
 
   return (
-    <section id="character-display" className="mb-10">
-      <div id="top-display" className="flex flex-col lg:flex-row lg:gap-2">
-        <KanjIDisplay character={character} />
-        <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
-          <ReadingDisplay character={character} />
-          <MiscDisplay character={character} />
-        </div>
+    <div className="mb-10 flex flex-col lg:flex-row lg:gap-2">
+      <KanjIDisplay character={character} />
+      <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
+        <ReadingDisplay character={character} />
+        <MiscDisplay character={character} />
       </div>
-    </section>
+    </div>
   );
 };
 
 export default function KanjiSearch() {
-  const [character, setCharacter] = useState<KanjiCharacter>();
+  const [characters, setCharacters] = useState<KanjiCharacter[]>();
   const [loading, setLoading] = useState(false);
 
-  const handleCharacter = (character: KanjiCharacter) => {
-    setCharacter(character);
+  const handleCharacters = (characters: KanjiCharacter[]) => {
+    setCharacters(characters);
   };
 
   const handleLoading = (state: boolean) => {
     setLoading(state);
   };
 
+  if (characters) {
+    console.log(characters.length);
+  }
+
   return (
     <div id="kanji-search">
       <PageTitle>Kanji Search</PageTitle>
-      <SearchForm setCharacter={handleCharacter} setLoading={handleLoading} />
-      <CharacterDisplay loading={loading} character={character} />
+      <SearchForm setCharacters={handleCharacters} setLoading={handleLoading} />
+      {loading ? (
+        <CharacterDisplayLoading />
+      ) : (
+        characters?.map((character) => (
+          <CharacterDisplay key={character.literal} character={character} />
+        ))
+      )}
       <div id="attribution">
         <p>
           TanukiHub's kanji search uses{" "}
