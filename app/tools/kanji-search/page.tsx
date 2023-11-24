@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import React, { ComponentPropsWithRef, ReactNode, useState } from "react";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import instance from "@/components/api/api";
 import PageTitle from "@/components/typography/PageTitle";
@@ -12,6 +12,8 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 import { animated, useSpring } from "@react-spring/web";
 import Link from "next/link";
+
+import * as RadioGroup from "@radix-ui/react-radio-group";
 
 interface Inputs {
   lang: "en" | "jp";
@@ -23,15 +25,32 @@ interface ResponseData {
   characters: KanjiCharacter[];
 }
 
+interface RadioItemLangProps
+  extends RadioGroup.RadioGroupItemProps,
+    Omit<
+      ComponentPropsWithRef<"button">,
+      keyof RadioGroup.RadioGroupItemProps
+    > {
+  children?: ReactNode;
+}
+
+const RadioItem = React.forwardRef<HTMLButtonElement, RadioItemLangProps>(
+  ({ children, value, ...props }, ref) => (
+    <RadioGroup.Item value={value} ref={ref} {...props}>
+      {children}
+    </RadioGroup.Item>
+  ),
+);
+
 interface SearchFormProps {
   setCharacters: (characters: KanjiCharacter[]) => void;
   setLoading: (state: boolean) => void;
 }
 
 const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
-  const { register, handleSubmit, watch } = useForm<Inputs>();
+  const { register, handleSubmit, watch, control } = useForm<Inputs>();
 
-  const watchLang = watch("lang", "en")
+  const watchLang = watch("lang", "en");
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     try {
@@ -50,31 +69,106 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="mb-4 flex rounded-md border-2 border-[#CC3E3E] dark:border-white md:mb-6 lg:mb-8"
-    >
-      <input
-        {...register("search", { required: true })}
-        autoComplete="off"
-        className="min-w-0 flex-1 bg-transparent px-2 focus:border-0 focus:outline-none dark:bg-transparent"
-      />
-      {watchLang === "jp" && (
-        <select className="bg-transparent w-16 px-2 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" {...register("by", { required: true })}>
-          <option value="kanji">Kanji</option>
-          <option value="kana">Kana</option>
-        </select>
-      )}
-      <select className="bg-transparent w-12 px-2 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" {...register("lang", { required: true })}>
-        <option value="en">EN</option>
-        <option value="jp">JP</option>
-      </select>
-      <button
-        type="submit"
-        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div id="search-radio" className="flex gap-5 items-center mb-2">
+        <Controller
+          name="lang"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <RadioGroup.Root
+              className="flex gap-3"
+              onValueChange={(value) => {
+                field.onChange(value);
+              }}
+              {...field}
+            >
+              <div className="flex items-center justify-center gap-2">
+                <RadioItem
+                  className="h-[25px] w-[25px] cursor-default rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                  id="lang1"
+                  value="en"
+                >
+                  <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                </RadioItem>
+                <label className="text-base leading-none" htmlFor="lang1">
+                  EN
+                </label>
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <RadioItem
+                  className="h-[25px] w-[25px] cursor-default rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                  id="lang2"
+                  value="jp"
+                >
+                  <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                </RadioItem>
+                <label className="text-base leading-none" htmlFor="lang2">
+                  JP
+                </label>
+              </div>
+            </RadioGroup.Root>
+          )}
+        />
+        {watchLang === "jp" && (
+          <Controller
+            name="by"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <RadioGroup.Root
+                className="flex gap-3"
+                onValueChange={(value) => {
+                  field.onChange(value);
+                }}
+                {...field}
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <RadioItem
+                    className="h-[18px] w-[18px] cursor-default border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    id="by1"
+                    value="kanji"
+                  >
+                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                  </RadioItem>
+                  <label className="text-base leading-none" htmlFor="by1">
+                    Kanji
+                  </label>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <RadioItem
+                    className="h-[18px] w-[18px] cursor-default border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    id="by2"
+                    value="kana"
+                  >
+                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                  </RadioItem>
+                  <label className="text-base leading-none" htmlFor="by2">
+                    Kana
+                  </label>
+                </div>
+              </RadioGroup.Root>
+            )}
+          />
+        )}
+      </div>
+      <div
+        id="search-text"
+        className="mb-4 flex rounded-md border-2 border-[#CC3E3E] dark:border-white md:mb-6 lg:mb-8"
       >
-        <MagnifyingGlassIcon className="h-5 w-5" />
-      </button>
+        <input
+          {...register("search", { required: true })}
+          type="search"
+          autoComplete="off"
+          className="min-w-0 flex-1 bg-transparent px-2 focus:border-0 focus:outline-none dark:bg-transparent"
+        />
+        <button
+          type="submit"
+          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          <MagnifyingGlassIcon className="h-5 w-5" />
+        </button>
+      </div>
     </form>
   );
 };
