@@ -41,7 +41,7 @@ const RadioItem = React.forwardRef<HTMLButtonElement, RadioItemLangProps>(
     </RadioGroup.Item>
   ),
 );
-RadioItem.displayName = "RadioItem"
+RadioItem.displayName = "RadioItem";
 
 interface SearchFormProps {
   setCharacters: (characters: KanjiCharacter[]) => void;
@@ -49,7 +49,13 @@ interface SearchFormProps {
 }
 
 const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
-  const { register, handleSubmit, watch, control } = useForm<Inputs>();
+  const { register, handleSubmit, watch, control } = useForm<Inputs>({
+    defaultValues: {
+      search: "",
+      lang: "en",
+      by: "kanji",
+    },
+  });
 
   const watchLang = watch("lang", "en");
 
@@ -73,7 +79,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div
         id="search-radio"
-        className="mb-2 flex flex-col gap-2 sm:gap-3 sm:flex-row"
+        className="mb-2 flex flex-col gap-2 sm:flex-row sm:gap-3"
       >
         <div className="flex gap-2">
           <div className="font-bold">Search In: </div>
@@ -84,7 +90,6 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
             render={({ field }) => (
               <RadioGroup.Root
                 className="flex gap-4"
-                defaultValue="en"
                 onValueChange={(value) => {
                   field.onChange(value);
                 }}
@@ -134,7 +139,6 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
               render={({ field }) => (
                 <RadioGroup.Root
                   className="flex gap-4"
-                  defaultValue="kanji"
                   onValueChange={(value) => {
                     field.onChange(value);
                   }}
