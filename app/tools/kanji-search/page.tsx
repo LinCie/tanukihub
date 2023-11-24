@@ -41,6 +41,7 @@ const RadioItem = React.forwardRef<HTMLButtonElement, RadioItemLangProps>(
     </RadioGroup.Item>
   ),
 );
+RadioItem.displayName = "RadioItem"
 
 interface SearchFormProps {
   setCharacters: (characters: KanjiCharacter[]) => void;
