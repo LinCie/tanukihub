@@ -70,86 +70,109 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div id="search-radio" className="flex gap-5 items-center mb-2">
-        <Controller
-          name="lang"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <RadioGroup.Root
-              className="flex gap-3"
-              onValueChange={(value) => {
-                field.onChange(value);
-              }}
-              {...field}
-            >
-              <div className="flex items-center justify-center gap-2">
-                <RadioItem
-                  className="h-[25px] w-[25px] cursor-default rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
-                  id="lang1"
-                  value="en"
-                >
-                  <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
-                </RadioItem>
-                <label className="text-base leading-none" htmlFor="lang1">
-                  EN
-                </label>
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <RadioItem
-                  className="h-[25px] w-[25px] cursor-default rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
-                  id="lang2"
-                  value="jp"
-                >
-                  <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
-                </RadioItem>
-                <label className="text-base leading-none" htmlFor="lang2">
-                  JP
-                </label>
-              </div>
-            </RadioGroup.Root>
-          )}
-        />
-        {watchLang === "jp" && (
+      <div
+        id="search-radio"
+        className="mb-2 flex flex-col gap-2 sm:gap-3 sm:flex-row"
+      >
+        <div className="flex gap-2">
+          <div className="font-bold">Search In: </div>
           <Controller
-            name="by"
+            name="lang"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
               <RadioGroup.Root
-                className="flex gap-3"
+                className="flex gap-4"
+                defaultValue="en"
                 onValueChange={(value) => {
                   field.onChange(value);
                 }}
                 {...field}
               >
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[18px] w-[18px] cursor-default border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
-                    id="by1"
-                    value="kanji"
+                    className="h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    id="lang1"
+                    value="en"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
                   </RadioItem>
-                  <label className="text-base leading-none" htmlFor="by1">
-                    Kanji
+                  <label
+                    className="cursor-pointer pl-2 text-base leading-none"
+                    htmlFor="lang1"
+                  >
+                    English
                   </label>
                 </div>
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[18px] w-[18px] cursor-default border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
-                    id="by2"
-                    value="kana"
+                    className="h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    id="lang2"
+                    value="jp"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
                   </RadioItem>
-                  <label className="text-base leading-none" htmlFor="by2">
-                    Kana
+                  <label
+                    className="cursor-pointer pl-2 text-base leading-none"
+                    htmlFor="lang2"
+                  >
+                    Japanese
                   </label>
                 </div>
               </RadioGroup.Root>
             )}
           />
+        </div>
+        {watchLang === "jp" && (
+          <div className="flex gap-2">
+            <div className="font-bold">Search by: </div>
+            <Controller
+              name="by"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <RadioGroup.Root
+                  className="flex gap-4"
+                  defaultValue="kanji"
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                  }}
+                  {...field}
+                >
+                  <div className="flex items-center justify-center">
+                    <RadioItem
+                      className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                      id="by1"
+                      value="kanji"
+                    >
+                      <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                    </RadioItem>
+                    <label
+                      className="cursor-pointer pl-2 text-base leading-none"
+                      htmlFor="by1"
+                    >
+                      Kanji
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <RadioItem
+                      className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                      id="by2"
+                      value="kana"
+                    >
+                      <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                    </RadioItem>
+                    <label
+                      className="cursor-pointer pl-2 text-base leading-none"
+                      htmlFor="by2"
+                    >
+                      Kana
+                    </label>
+                  </div>
+                </RadioGroup.Root>
+              )}
+            />
+          </div>
         )}
       </div>
       <div
