@@ -68,4 +68,4 @@ interface KanjiDictionary {
   characters: KanjiCharacter[];
 }
 
-export const kanjidic: KanjiDictionary = require("@/components/dictionaries/kanjidic.json");
+export const kanjidic: KanjiDictionary = require("@/services/dictionaries/kanjidic.json");
