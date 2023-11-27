@@ -1,4 +1,4 @@
-import { kanjidic } from "@/components/dictionaries/kanjidic";
+import { kanjidic } from "@/services/dictionaries/kanjidic";
 
 // Create a Trie Node where the children is an object where the key is a letter or kana and the value is another Trie node.
 // Each Node will have an array of kanji that represents the kanji that corresponds to the traversed node.

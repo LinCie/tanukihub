@@ -1,4 +1,4 @@
-import { KanjiCharacter, kanjidic } from "@/components/dictionaries/kanjidic";
+import { KanjiCharacter, kanjidic } from "@/services/dictionaries/kanjidic";
 
 // Kanji Hash Table
 

@@ -6,7 +6,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import instance from "@/components/api/api";
 import PageTitle from "@/components/typography/PageTitle";
-import { KanjiCharacter } from "@/components/dictionaries/kanjidic";
+import { KanjiCharacter } from "@/services/dictionaries/kanjidic";
 
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 

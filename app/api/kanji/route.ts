@@ -1,4 +1,4 @@
-import { KanjiCharacter, kanjidic } from "@/components/dictionaries/kanjidic";
+import { KanjiCharacter, kanjidic } from "@/services/dictionaries/kanjidic";
 import { NextResponse } from "next/server";
 import { getKanaTrie, getMeaningTrie } from "@/services/kanji/kanjiTrie";
 import { getKanjiHash } from "@/services/kanji/kanjiHash";
