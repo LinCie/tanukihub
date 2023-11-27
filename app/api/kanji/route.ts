@@ -31,7 +31,7 @@ export async function GET(req: Request) {
     const requestUrl = new URL(req.url);
     const params = requestUrl.searchParams;
 
-    const search: string | null = params.get("search");
+    const search: string | undefined = params.get("search")?.toLowerCase();
 
     // Returns a bad request error if user doesn't provide search parameter
     if (!search) {
@@ -43,7 +43,7 @@ export async function GET(req: Request) {
 
     const characters = new Characters();
 
-    const language: string | null = params.get("lang");
+    const language: string | undefined = params.get("lang")?.toLowerCase();
 
     // Do this if the user search by using english
     if (language === "en") {
@@ -63,7 +63,7 @@ export async function GET(req: Request) {
 
       // Do this if user search by using Japanese
     } else if (language === "jp") {
-      const searchBy: string | null = params.get("by");
+      const searchBy: string | undefined = params.get("by")?.toLowerCase();
       const kanjiHash = getKanjiHash();
 
       // Do this if the user search by using Kanji
@@ -127,7 +127,6 @@ export async function GET(req: Request) {
     } else {
       return NextResponse.json({ message: "Kanji not found" }, { status: 400 });
     }
-    
   } catch (err) {
     return NextResponse.json(
       { message: "Server Error", error: err },
