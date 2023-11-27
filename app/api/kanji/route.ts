@@ -1,7 +1,30 @@
-import { KanjiCharacter, kanjidic } from "@/services/dictionaries/kanjidic";
 import { NextResponse } from "next/server";
+
+import { KanjiCharacter } from "@/services/dictionaries/kanjidic";
 import { getKanaTrie, getMeaningTrie } from "@/services/kanji/kanjiTrie";
 import { getKanjiHash } from "@/services/kanji/kanjiHash";
+
+class Characters {
+  characters: KanjiCharacter[];
+
+  constructor() {
+    this.characters = [];
+  }
+
+  push(character: KanjiCharacter): void {
+    this.characters.push(character);
+  }
+
+  get(endIndex: number): KanjiCharacter[] {
+    return [...this.characters].slice(0, endIndex);
+  }
+
+  sort(): KanjiCharacter[] {
+    return [...this.characters].sort(
+      (a, b) => (a.misc?.frequency || 9999) - (b.misc?.frequency || 9999),
+    );
+  }
+}
 
 export async function GET(req: Request) {
   try {
@@ -18,7 +41,7 @@ export async function GET(req: Request) {
       );
     }
 
-    const characters: KanjiCharacter[] = [];
+    const characters = new Characters();
 
     const language: string | null = params.get("lang");
 
@@ -96,7 +119,15 @@ export async function GET(req: Request) {
       );
     }
 
-    return NextResponse.json({ characters: characters }, { status: 200 });
+    if (characters) {
+      return NextResponse.json(
+        { characters: characters.sort() },
+        { status: 200 },
+      );
+    } else {
+      return NextResponse.json({ message: "Kanji not found" }, { status: 400 });
+    }
+    
   } catch (err) {
     return NextResponse.json(
       { message: "Server Error", error: err },
