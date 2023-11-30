@@ -4,7 +4,7 @@ import React, { ComponentPropsWithRef, ReactNode, useState } from "react";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-import instance from "@/components/api/api";
+import instance from "@/services/api/api";
 import PageTitle from "@/components/typography/PageTitle";
 import { KanjiCharacter } from "@/services/dictionaries/kanjidic";
 
