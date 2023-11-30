@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open",
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
+    "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
+    "component": "cypress open --component",
+    "component:headless": "cypress run --component"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.1.2",
@@ -18,13 +23,15 @@
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.48.2"
+    "react-hook-form": "^7.48.2",
+    "start-server-and-test": "^2.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
+    "cypress": "^13.6.0",
     "eslint": "^8",
     "eslint-config-next": "13.5.6",
     "postcss": "^8",

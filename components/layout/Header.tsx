@@ -77,6 +77,7 @@ const SidebarContent = () => {
         return (
           <Accordion.AccordionItem
             key={page.root}
+            id={`${page.root}-root`}
             value={page.root}
             className="border-b-2 dark:border-b-gray-800"
           >
@@ -92,6 +93,7 @@ const SidebarContent = () => {
                 return (
                   <Link
                     key={link.name}
+                    id={`${link.link}-link`}
                     href={pageLink}
                     className={`block p-3 pl-8 text-sm last-of-type:pb-6 hover:underline ${
                       pathname === pageLink
