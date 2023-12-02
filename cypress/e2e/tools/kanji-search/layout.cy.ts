@@ -4,17 +4,15 @@ describe("Navigation Testing", () => {
     cy.visit("tools/kanji-search");
   });
 
-  it("shows correct current navigation", () => {
-    const navRoot = cy.get("#tools-root");
+  describe("Sidebar", () => {
+    it("should show correct current navigation", () => {
+      cy.getBySel("tools-root").should("have.data", "state", "open");
 
-    navRoot.should("have.data", "state", "open");
-
-    const navLink = cy.get("#kanji-search-link");
-
-    navLink
-      .should("have.class", "font-medium")
-      .and("have.class", "text-[#CC3E3E]")
-      .and("have.class", "dark:text-white");
+      cy.getBySel("kanji-search-link")
+        .should("have.class", "font-medium")
+        .and("have.class", "text-[#CC3E3E]")
+        .and("have.class", "dark:text-white");
+    });
   });
 });
 
@@ -24,8 +22,6 @@ describe("Header Testing", () => {
   });
 
   it("has correct header", () => {
-    const header = cy.get("#page-title");
-
-    header.contains("Kanji Search");
+    cy.getBySel("page-title").contains("Kanji Search");
   });
 });

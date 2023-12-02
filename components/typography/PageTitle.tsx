@@ -10,6 +10,7 @@ export default function PageTitle({ className, children, ...props }: Props) {
   return (
     <h1
       id="page-title"
+      data-test="page-title"
       aria-label="Page Title"
       className={`mb-4 text-xl font-bold text-black dark:text-white sm:mb-6 sm:text-2xl ${customClass}`.trim()}
       {...props}
