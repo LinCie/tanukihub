@@ -204,6 +204,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
         />
         <button
           type="submit"
+          data-test="submit"
           className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
         >
           <MagnifyingGlassIcon className="h-5 w-5" />
@@ -359,7 +360,7 @@ const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
   }
 
   return (
-    <div className="mb-10 flex flex-col lg:flex-row lg:gap-2">
+    <div data-test="character-display" className="mb-10 flex flex-col lg:flex-row lg:gap-2">
       <KanjIDisplay character={character} />
       <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
         <ReadingDisplay character={character} />
