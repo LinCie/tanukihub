@@ -152,12 +152,14 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
                   field.onChange(value);
                 }}
                 {...field}
+                data-test="by-checkbox"
               >
                 <div className="flex items-center justify-center">
                   <RadioItem
                     className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
                     id="by1"
                     value="kanji"
+                    data-test="kanji-check"
                   >
                     <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
                   </RadioItem>
@@ -173,6 +175,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
                     className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
                     id="by2"
                     value="kana"
+                    data-test="kana-check"
                   >
                     <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
                   </RadioItem>
