@@ -30,7 +30,9 @@ describe("Functionality Test", () => {
     describe("Default Language", () => {
       it("should be english", () => {
         // Find the default checked value and assert the value to be en
-        cy.get("@checkbox [data-state='checked']").should("have.value", "en");
+        cy.get("@checkbox")
+          .find("[data-state='checked']")
+          .should("have.value", "en");
       });
     });
 
@@ -40,7 +42,9 @@ describe("Functionality Test", () => {
         cy.getBySel("jp-check").click();
 
         // Assert the checked checkbox to have value of jp
-        cy.get("@checkbox [data-state='checked']").should("have.value", "jp");
+        cy.get("@checkbox")
+          .find("[data-state='checked']")
+          .should("have.value", "jp");
       });
     });
   });
@@ -68,16 +72,17 @@ describe("Functionality Test", () => {
       // by checkbox should be able to be checked
       it("should be able to check", () => {
         // Find the default checked value an assert it to be kanji
-        cy.get("@checkbox [data-state='checked']").should(
-          "have.value",
-          "kanji",
-        );
+        cy.get("@checkbox")
+          .find("[data-state='checked']")
+          .should("have.value", "kanji");
 
         // Click kana checkbox
         cy.getBySel("kana-check").click();
 
         // Assert the checked checkbox to have value of kana
-        cy.get("@checkbox [data-state='checked']").should("have.value", "kana");
+        cy.get("@checkbox")
+          .find("[data-state='checked']")
+          .should("have.value", "kana");
       });
     });
   });
