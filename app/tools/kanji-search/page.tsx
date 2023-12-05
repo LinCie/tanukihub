@@ -1,10 +1,15 @@
 "use client";
 
-import React, { ComponentPropsWithRef, ReactNode, useState } from "react";
+import React, {
+  ComponentPropsWithRef,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-import instance from "@/components/api/api";
+import instance from "@/services/api/api";
 import PageTitle from "@/components/typography/PageTitle";
 import { KanjiCharacter } from "@/services/dictionaries/kanjidic";
 
@@ -93,6 +98,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
                 onValueChange={(value) => {
                   field.onChange(value);
                 }}
+                data-test="lang-checkbox"
                 {...field}
               >
                 <div className="flex items-center justify-center">
@@ -100,6 +106,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
                     className="h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
                     id="lang1"
                     value="en"
+                    data-test="en-check"
                   >
                     <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
                   </RadioItem>
@@ -115,6 +122,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
                     className="h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
                     id="lang2"
                     value="jp"
+                    data-test="jp-check"
                   >
                     <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
                   </RadioItem>
@@ -129,56 +137,59 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
             )}
           />
         </div>
-        {watchLang === "jp" && (
-          <div className="flex gap-2">
-            <div className="font-bold">Search by: </div>
-            <Controller
-              name="by"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <RadioGroup.Root
-                  className="flex gap-4"
-                  onValueChange={(value) => {
-                    field.onChange(value);
-                  }}
-                  {...field}
-                >
-                  <div className="flex items-center justify-center">
-                    <RadioItem
-                      className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
-                      id="by1"
-                      value="kanji"
-                    >
-                      <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
-                    </RadioItem>
-                    <label
-                      className="cursor-pointer pl-2 text-base leading-none"
-                      htmlFor="by1"
-                    >
-                      Kanji
-                    </label>
-                  </div>
-                  <div className="flex items-center justify-center">
-                    <RadioItem
-                      className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
-                      id="by2"
-                      value="kana"
-                    >
-                      <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
-                    </RadioItem>
-                    <label
-                      className="cursor-pointer pl-2 text-base leading-none"
-                      htmlFor="by2"
-                    >
-                      Kana
-                    </label>
-                  </div>
-                </RadioGroup.Root>
-              )}
-            />
-          </div>
-        )}
+        <div
+          className={`flex gap-2 ${watchLang === "jp" ? "block" : "hidden"}`}
+        >
+          <div className="font-bold">Search by: </div>
+          <Controller
+            name="by"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <RadioGroup.Root
+                className="flex gap-4"
+                onValueChange={(value) => {
+                  field.onChange(value);
+                }}
+                {...field}
+                data-test="by-checkbox"
+              >
+                <div className="flex items-center justify-center">
+                  <RadioItem
+                    className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    id="by1"
+                    value="kanji"
+                    data-test="kanji-check"
+                  >
+                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                  </RadioItem>
+                  <label
+                    className="cursor-pointer pl-2 text-base leading-none"
+                    htmlFor="by1"
+                  >
+                    Kanji
+                  </label>
+                </div>
+                <div className="flex items-center justify-center">
+                  <RadioItem
+                    className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    id="by2"
+                    value="kana"
+                    data-test="kana-check"
+                  >
+                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                  </RadioItem>
+                  <label
+                    className="cursor-pointer pl-2 text-base leading-none"
+                    htmlFor="by2"
+                  >
+                    Kana
+                  </label>
+                </div>
+              </RadioGroup.Root>
+            )}
+          />
+        </div>
       </div>
       <div
         id="search-text"
@@ -188,10 +199,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
           {...register("search", { required: true })}
           type="search"
           autoComplete="off"
+          data-test="search"
           className="min-w-0 flex-1 bg-transparent px-2 focus:border-0 focus:outline-none dark:bg-transparent"
         />
         <button
           type="submit"
+          data-test="submit"
           className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
         >
           <MagnifyingGlassIcon className="h-5 w-5" />
@@ -347,7 +360,7 @@ const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
   }
 
   return (
-    <div className="mb-10 flex flex-col lg:flex-row lg:gap-2">
+    <div data-test="character-display" className="mb-10 flex flex-col lg:flex-row lg:gap-2">
       <KanjIDisplay character={character} />
       <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
         <ReadingDisplay character={character} />
@@ -360,6 +373,7 @@ const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
 export default function KanjiSearch() {
   const [characters, setCharacters] = useState<KanjiCharacter[]>();
   const [loading, setLoading] = useState(false);
+  const [formMounted, setFormMounted] = useState(false);
 
   const handleCharacters = (characters: KanjiCharacter[]) => {
     setCharacters(characters);
@@ -369,14 +383,19 @@ export default function KanjiSearch() {
     setLoading(state);
   };
 
-  if (characters) {
-    console.log(characters.length);
-  }
+  useEffect(() => {
+    setFormMounted(true);
+  }, []);
 
   return (
     <div id="kanji-search">
       <PageTitle>Kanji Search</PageTitle>
-      <SearchForm setCharacters={handleCharacters} setLoading={handleLoading} />
+      {formMounted && (
+        <SearchForm
+          setCharacters={handleCharacters}
+          setLoading={handleLoading}
+        />
+      )}
       {loading ? (
         <CharacterDisplayLoading />
       ) : (
