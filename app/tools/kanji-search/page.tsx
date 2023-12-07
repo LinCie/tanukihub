@@ -19,6 +19,7 @@ import { animated, useSpring } from "@react-spring/web";
 import Link from "next/link";
 
 import * as RadioGroup from "@radix-ui/react-radio-group";
+import Japanese from "@/components/typography/Japanese";
 
 interface Inputs {
   lang: "en" | "jp";
@@ -228,7 +229,7 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
       <div id="kanji-character" className="mb-4 flex justify-center">
         <div id="kanji-character-container" className="h-32 w-32">
           <div id="kanji-character-text" className="select-none text-9xl">
-            {character.literal}
+            <Japanese>{character.literal}</Japanese>
           </div>
         </div>
       </div>
@@ -259,11 +260,15 @@ const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
       <h2 className="mb-2 text-lg font-bold">Readings</h2>
       <div id="kunyomi-display" className="mb-1 flex gap-2">
         <div>Kun:</div>
-        <div>{kunyomi.join("、 ")}</div>
+        <Japanese>
+          <div>{kunyomi.join("、 ")}</div>
+        </Japanese>
       </div>
       <div id="onyomi-display" className="flex gap-2">
         <div>On:</div>
-        <div>{onyomi.join("、 ")}</div>
+        <Japanese>
+          <div>{onyomi.join("、 ")}</div>
+        </Japanese>
       </div>
     </div>
   );

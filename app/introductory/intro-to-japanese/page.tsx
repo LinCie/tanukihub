@@ -7,6 +7,7 @@ import SectionTitle from "@/components/typography/SectionTitle";
 import List from "@/components/list/List";
 import ListContent from "@/components/list/ListContent";
 import Bold from "@/components/typography/Bold";
+import Japanese from "@/components/typography/Japanese";
 
 const WritingSystemSection = () => {
   return (
@@ -19,24 +20,24 @@ const WritingSystemSection = () => {
       </Paragraph>
       <List type="disc" position="outside" className="mx-5">
         <ListContent className="mb-1 text-sm text-black last-of-type:mb-4 dark:text-white sm:text-base last-of-type:sm:mb-5">
-          <Bold>Hiragana (平仮名)</Bold>. A syllabary used for native Japanese
+          <Bold>Hiragana (<Japanese>平仮名</Japanese>)</Bold>. A syllabary used for native Japanese
           words and grammatical elements. For example,{" "}
-          <Bold>たべる | た(ta)べ(be)る(ru) | taberu (to eat)</Bold> is written
+          <Bold><Japanese>たべる | た(ta)べ(be)る(ru) | taberu (to eat)</Japanese></Bold> is written
           in Hiragana
         </ListContent>
         <ListContent className="mb-1 text-sm text-black last-of-type:mb-4 dark:text-white sm:text-base last-of-type:sm:mb-5">
-          <Bold>Katakana (片仮名)</Bold>. Another syllabary used primarily for
+          <Bold>Katakana (<Japanese>片仮名</Japanese>)</Bold>. Another syllabary used primarily for
           loanwords, foreign names, and onomatopoeia. For example,{" "}
-          <Bold>タベル | タ(ta)ベ(be)ル(ru) | taberu (to eat)</Bold> is the same
+          <Bold><Japanese>タベル | タ(ta)ベ(be)ル(ru) | taberu (to eat)</Japanese></Bold> is the same
           word written in Katakana. While it's less common to write native
           Japanese words like "to eat" in Katakana, it might be used for
           emphasis or in specific contexts.
         </ListContent>
         <ListContent className="mb-1 text-sm text-black last-of-type:mb-4 dark:text-white sm:text-base last-of-type:sm:mb-5">
-          <Bold>Kanji (漢字)</Bold>. Logographic characters borrowed from
+          <Bold>Kanji (<Japanese>漢字</Japanese>)</Bold>. Logographic characters borrowed from
           Chinese, representing words and concepts. There are thousands of Kanji
           characters in use, and mastering them is a lifelong endeavor. For
-          example, <Bold>食べる | 食(ta)べ(be)る(ru) | taberu (to eat)</Bold> is
+          example, <Bold><Japanese>食べる | 食(ta)べ(be)る(ru) | taberu (to eat)</Japanese></Bold> is
           the Kanji representation of "to eat." The Kanji character 食 (shoku)
           means "food" or "to eat," and it adds depth and meaning to the word.
           Kanji allows for a more precise and nuanced expression of the concept.
@@ -58,8 +59,8 @@ const GrammarSection = () => {
       </Paragraph>
       <Paragraph>
         Japanese grammar also uses particles, small words that indicate the role
-        of a word in a sentence. For example, "は" (wa) is used to mark the
-        topic of a sentence, and "を" (o) indicates the direct object of a verb.
+        of a word in a sentence. For example, "<Japanese>は</Japanese>" (wa) is used to mark the
+        topic of a sentence, and "<Japanese>を</Japanese>" (o) indicates the direct object of a verb.
       </Paragraph>
     </section>
   );
