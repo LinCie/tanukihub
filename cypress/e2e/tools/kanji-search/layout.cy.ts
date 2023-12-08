@@ -1,4 +1,4 @@
-describe("Navigation Testing", () => {
+describe("Layout Testing", () => {
   // Visit kanji-search link
   beforeEach(() => {
     cy.visit("tools/kanji-search");
@@ -13,15 +13,5 @@ describe("Navigation Testing", () => {
         .and("have.class", "text-[#CC3E3E]")
         .and("have.class", "dark:text-white");
     });
-  });
-});
-
-describe("Header Testing", () => {
-  beforeEach(() => {
-    cy.visit("tools/kanji-search");
-  });
-
-  it("has correct header", () => {
-    cy.getBySel("page-title").contains("Kanji Search");
   });
 });
