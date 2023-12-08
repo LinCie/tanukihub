@@ -3,7 +3,6 @@ import PageTitle from "@/components/typography/PageTitle";
 import Paragraph from "@/components/typography/Paragraph";
 import BottomNavigation from "@/components/navigation/BottomNavigation";
 import BottomNavigationLink from "@/components/navigation/BottomNavigationLink";
-import Bold from "@/components/typography/Bold";
 import Japanese from "@/components/typography/Japanese";
 
 export default function Home() {

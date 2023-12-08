@@ -1,3 +1,6 @@
+// Next Imports
+import type { Metadata } from "next";
+
 // Custom Component Imports
 import PageTitle from "@/components/typography/PageTitle";
 import Paragraph from "@/components/typography/Paragraph";
@@ -8,6 +11,10 @@ import List from "@/components/list/List";
 import ListContent from "@/components/list/ListContent";
 import Bold from "@/components/typography/Bold";
 import Japanese from "@/components/typography/Japanese";
+
+export const metadata: Metadata = {
+  title: "TanukiHub | Intro to Japanese",
+};
 
 const WritingSystemSection = () => {
   return (
@@ -20,27 +27,43 @@ const WritingSystemSection = () => {
       </Paragraph>
       <List type="disc" position="outside" className="mx-5">
         <ListContent className="mb-1 text-sm text-black last-of-type:mb-4 dark:text-white sm:text-base last-of-type:sm:mb-5">
-          <Bold>Hiragana (<Japanese>平仮名</Japanese>)</Bold>. A syllabary used for native Japanese
-          words and grammatical elements. For example,{" "}
-          <Bold><Japanese>たべる | た(ta)べ(be)る(ru) | taberu (to eat)</Japanese></Bold> is written
-          in Hiragana
+          <Bold>
+            Hiragana (<Japanese>平仮名</Japanese>)
+          </Bold>
+          . A syllabary used for native Japanese words and grammatical elements.
+          For example,{" "}
+          <Japanese className="font-bold">
+            たべる | た(ta)べ(be)る(ru) | taberu (to eat)
+          </Japanese>{" "}
+          is written in Hiragana
         </ListContent>
         <ListContent className="mb-1 text-sm text-black last-of-type:mb-4 dark:text-white sm:text-base last-of-type:sm:mb-5">
-          <Bold>Katakana (<Japanese>片仮名</Japanese>)</Bold>. Another syllabary used primarily for
-          loanwords, foreign names, and onomatopoeia. For example,{" "}
-          <Bold><Japanese>タベル | タ(ta)ベ(be)ル(ru) | taberu (to eat)</Japanese></Bold> is the same
-          word written in Katakana. While it's less common to write native
-          Japanese words like "to eat" in Katakana, it might be used for
+          <Bold>
+            Katakana (<Japanese>片仮名</Japanese>)
+          </Bold>
+          . Another syllabary used primarily for loanwords, foreign names, and
+          onomatopoeia. For example,{" "}
+          <Japanese className="font-bold">
+            タベル | タ(ta)ベ(be)ル(ru) | taberu (to eat)
+          </Japanese>{" "}
+          is the same word written in Katakana. While it's less common to write
+          native Japanese words like "to eat" in Katakana, it might be used for
           emphasis or in specific contexts.
         </ListContent>
         <ListContent className="mb-1 text-sm text-black last-of-type:mb-4 dark:text-white sm:text-base last-of-type:sm:mb-5">
-          <Bold>Kanji (<Japanese>漢字</Japanese>)</Bold>. Logographic characters borrowed from
-          Chinese, representing words and concepts. There are thousands of Kanji
-          characters in use, and mastering them is a lifelong endeavor. For
-          example, <Bold><Japanese>食べる | 食(ta)べ(be)る(ru) | taberu (to eat)</Japanese></Bold> is
-          the Kanji representation of "to eat." The Kanji character 食 (shoku)
-          means "food" or "to eat," and it adds depth and meaning to the word.
-          Kanji allows for a more precise and nuanced expression of the concept.
+          <Bold>
+            Kanji (<Japanese>漢字</Japanese>)
+          </Bold>
+          . Logographic characters borrowed from Chinese, representing words and
+          concepts. There are thousands of Kanji characters in use, and
+          mastering them is a lifelong endeavor. For example,{" "}
+          <Japanese className="font-bold">
+            食べる | 食(ta)べ(be)る(ru) | taberu (to eat)
+          </Japanese>{" "}
+          is the Kanji representation of "to eat." The Kanji character 食
+          (shoku) means "food" or "to eat," and it adds depth and meaning to the
+          word. Kanji allows for a more precise and nuanced expression of the
+          concept.
         </ListContent>
       </List>
     </section>
@@ -59,8 +82,9 @@ const GrammarSection = () => {
       </Paragraph>
       <Paragraph>
         Japanese grammar also uses particles, small words that indicate the role
-        of a word in a sentence. For example, "<Japanese>は</Japanese>" (wa) is used to mark the
-        topic of a sentence, and "<Japanese>を</Japanese>" (o) indicates the direct object of a verb.
+        of a word in a sentence. For example, "<Japanese>は</Japanese>" (wa) is
+        used to mark the topic of a sentence, and "<Japanese>を</Japanese>" (o)
+        indicates the direct object of a verb.
       </Paragraph>
     </section>
   );

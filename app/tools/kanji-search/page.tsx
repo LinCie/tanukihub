@@ -1,5 +1,6 @@
 "use client";
 
+// React Imports
 import React, {
   ComponentPropsWithRef,
   ReactNode,
@@ -7,31 +8,43 @@ import React, {
   useState,
 } from "react";
 
+// Next Imports
+import Link from "next/link";
+
+// React Hook Form Imports
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
+// Radix Imports
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import * as RadioGroup from "@radix-ui/react-radio-group";
+
+// React Spring Imports
+import { animated, useSpring } from "@react-spring/web";
+
+// Local Imports
 import instance from "@/services/api/api";
 import PageTitle from "@/components/typography/PageTitle";
 import { KanjiCharacter } from "@/services/dictionaries/kanjidic";
-
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-
-import { animated, useSpring } from "@react-spring/web";
-import Link from "next/link";
-
-import * as RadioGroup from "@radix-ui/react-radio-group";
 import Japanese from "@/components/typography/Japanese";
 
+/* 
+  SearchForm stuffs
+*/
+
+// Input type for React Hook Form
 interface Inputs {
   lang: "en" | "jp";
   by: "kanji" | "kana";
   search: string;
 }
 
+// Response data type from axios
 interface ResponseData {
   characters: KanjiCharacter[];
 }
 
-interface RadioItemLangProps
+// Radio Item props
+interface RadioItemProps
   extends RadioGroup.RadioGroupItemProps,
     Omit<
       ComponentPropsWithRef<"button">,
@@ -40,20 +53,25 @@ interface RadioItemLangProps
   children?: ReactNode;
 }
 
-const RadioItem = React.forwardRef<HTMLButtonElement, RadioItemLangProps>(
+// Custom Radix's Radio Item components now with ref. Used for React Hook Form controller
+const RadioItem = React.forwardRef<HTMLButtonElement, RadioItemProps>(
   ({ children, value, ...props }, ref) => (
     <RadioGroup.Item value={value} ref={ref} {...props}>
       {children}
     </RadioGroup.Item>
   ),
 );
+
+// Do not delete, will result in eslint error if deleted. Used to name an Radio Item as React.forwardRef returns an anonymous function
 RadioItem.displayName = "RadioItem";
 
+// Search Form Props
 interface SearchFormProps {
   setCharacters: (characters: KanjiCharacter[]) => void;
   setLoading: (state: boolean) => void;
 }
 
+// Used for searching kanji
 const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
   const { register, handleSubmit, watch, control } = useForm<Inputs>({
     defaultValues: {
@@ -63,19 +81,23 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
     },
   });
 
+  // Used for the "by" input
   const watchLang = watch("lang", "en");
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     try {
       setLoading(true);
+
       const response = await instance.get(`/kanji`, { params: inputs });
       const data: ResponseData = response.data;
 
       if (data.characters) {
         setCharacters(data.characters);
       }
+
     } catch (err) {
       console.log(err);
+
     } finally {
       setLoading(false);
     }
@@ -96,6 +118,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
             render={({ field }) => (
               <RadioGroup.Root
                 className="flex gap-4"
+                // Note to future self, use onValueChange to change React Hook Form value if using radix
                 onValueChange={(value) => {
                   field.onChange(value);
                 }}
@@ -215,11 +238,18 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
   );
 };
 
+/* 
+  KanjiDisplay component stuffs
+*/
+
+// The props that KanjIDisplay use
 interface KanjIDisplayProps {
   character: KanjiCharacter;
 }
 
+// Used to display the kanji alongside its meaning
 const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
+  // Create a string array filled with the kanji's meaning
   const meanings: string[] = character.readingMeaning.groups.flatMap((group) =>
     group.meanings.map((m) => m.value),
   );
@@ -242,15 +272,23 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
   );
 };
 
+/* 
+  ReadingDisplay stuffs
+*/
+
+// ReadingDisplay props
 interface ReadingDisplayProps {
   character: KanjiCharacter;
 }
 
+// Used to display the reading of a kanji
 const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
+  // Create an array string filled with the kanji's kunyomi reading
   const kunyomi: string[] = character.readingMeaning.groups
     .flatMap((group) => group.readings.filter((r) => r.type === "ja_kun"))
     .map((r) => r.value);
 
+  // Create an array string filled with the kanji's onyomi reading
   const onyomi: string[] = character.readingMeaning.groups
     .flatMap((group) => group.readings.filter((r) => r.type === "ja_on"))
     .map((r) => r.value);
@@ -274,12 +312,19 @@ const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
   );
 };
 
+/*
+  MiscDisplay stuffs
+*/
+
+// MiscDisplay Props
 interface MiscDisplayProps {
   character: KanjiCharacter;
 }
 
+// Used to display miscellaneous stuffs about the kanji
 const MiscDisplay = ({ character }: MiscDisplayProps) => {
   const grade: number = character.misc.grade;
+  // Add 1 because somehow the level starts with 0
   const level: number = character.misc.jlptLevel + 1;
 
   return (
@@ -301,6 +346,11 @@ const MiscDisplay = ({ character }: MiscDisplayProps) => {
   );
 };
 
+/*
+  Loading Skeleton
+*/
+
+// The loading skeleton, it will loop a skeleton animation. Used to show that the search is currently underway
 const CharacterDisplayLoading = () => {
   const springs = useSpring({
     loop: { reverse: true },
@@ -355,17 +405,27 @@ const CharacterDisplayLoading = () => {
   );
 };
 
+/* 
+  CharacterDisplay stuffs
+*/
+
+// CharacterDisplay props
 interface CharacterDisplayProps {
   character: KanjiCharacter | undefined;
 }
 
+// Used to display the characters returned from the search
 const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
+  // Don't display anything if character doesn't exist
   if (!character) {
     return null;
   }
 
   return (
-    <div data-test="character-display" className="mb-10 flex flex-col lg:flex-row lg:gap-2">
+    <div
+      data-test="character-display"
+      className="mb-10 flex flex-col lg:flex-row lg:gap-2"
+    >
       <KanjIDisplay character={character} />
       <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
         <ReadingDisplay character={character} />
@@ -375,9 +435,16 @@ const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
   );
 };
 
+/* 
+  KanjiSearch
+*/
+
 export default function KanjiSearch() {
+  // Where character resides
   const [characters, setCharacters] = useState<KanjiCharacter[]>();
+  // State used to show that the search is currently underway
   const [loading, setLoading] = useState(false);
+  // Used to mount the form
   const [formMounted, setFormMounted] = useState(false);
 
   const handleCharacters = (characters: KanjiCharacter[]) => {
@@ -388,6 +455,7 @@ export default function KanjiSearch() {
     setLoading(state);
   };
 
+  // Used to mount to form. The form will break if it's mounted on initial render. Do not delete or change
   useEffect(() => {
     setFormMounted(true);
   }, []);

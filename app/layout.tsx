@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google"
+import { Roboto } from "next/font/google";
 
 import "./globals.css";
 import { Providers } from "./providers";
@@ -10,7 +10,7 @@ const roboto = Roboto({
   weight: ["400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
-})
+});
 
 export const metadata: Metadata = {
   title: "TanukiHub",
@@ -27,7 +27,10 @@ export default function RootLayout({
       <body className={`${roboto.className} bg-white dark:bg-gray-950`}>
         <Providers>
           <Header />
-          <main id="content" className="ml-0 mt-14 p-6 md:ml-64 md:mt-16 md:p-14">
+          <main
+            id="content"
+            className="ml-0 mt-14 p-6 md:ml-64 md:mt-16 md:p-14"
+          >
             {children}
           </main>
         </Providers>
