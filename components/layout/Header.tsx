@@ -96,6 +96,8 @@ const SidebarContent = () => {
                     key={link.name}
                     id={`${link.link}-link`}
                     data-test={`${link.link}-link`}
+                    aria-current={pathname === pageLink ? "page" : "false"}
+                    data-current={pathname === pageLink ? "page" : "false"}
                     href={pageLink}
                     className={`block p-3 pl-8 text-sm last-of-type:pb-6 hover:underline ${
                       pathname === pageLink
