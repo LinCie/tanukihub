@@ -22,11 +22,11 @@ import {
 import * as Accordion from "@radix-ui/react-accordion";
 
 // Custom Component Imports
-import IconButton from "@/components/IconButton";
+import IconButton from "@/components/button/IconButton";
 
 // React Spring Imports
 import { animated, useSpring } from "@react-spring/web";
-import { pages } from "../pages";
+import { pages } from "../../services/pages/pages";
 
 const ThemeIcon = () => {
   const [mounted, setMounted] = useState(false);
