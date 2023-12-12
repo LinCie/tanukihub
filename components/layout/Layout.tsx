@@ -117,18 +117,20 @@ const Layout = () => {
               icon={<HamburgerMenuIcon />}
               onClick={handleSidebarOpen}
               className="relative text-white"
+              aria-label="Toggle Sidebar Open"
             />
             <AnimatedSidebarToggle
               style={crossSprings}
               icon={<Cross1Icon />}
               onClick={handleSidebarOpen}
               className="absolute left-0 top-0 text-white"
+              aria-label="Toggle Sidebar Close"
             />
           </div>
-          <Link href="/" className="flex select-none items-center gap-1">
+          <Link aria-label="Return to the front page" href="/" className="flex select-none items-center gap-1">
             <Image
               src="/logo.jpg"
-              alt="TanukiHub"
+              alt="TanukiHub Logo"
               width={500}
               height={500}
               className="h-8 w-8"
@@ -137,8 +139,8 @@ const Layout = () => {
           </Link>
         </div>
         <div className="flex gap-1">
-          <Link href="https://github.com/LinCie/tanukihub" target="_blank">
-            <IconButton icon={<GitHubLogoIcon />} className="text-white" />
+          <Link aria-label="Visit our github repository" href="https://github.com/LinCie/tanukihub" target="_blank">
+            <IconButton icon={<GitHubLogoIcon aria-label="GitHub Logo" />} className="text-white" />
           </Link>
           <ThemeIcon />
         </div>

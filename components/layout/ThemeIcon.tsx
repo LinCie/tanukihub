@@ -40,7 +40,7 @@ const ThemeIcon = () => {
 
   return (
     <IconButton
-      icon={<MoonIcon />}
+      icon={<MoonIcon aria-label="Toggle Darkmode" />}
       className={`${darkMode ? "text-yellow-400" : "text-white"}`}
       onClick={handleThemeToggle}
     />
