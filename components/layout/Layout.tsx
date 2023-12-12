@@ -1,123 +1,28 @@
 "use client";
 
 // React Imports
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // NextJS Imports
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-// Next Theme
-import { useTheme } from "next-themes";
 
 // Radix UI Imports
 import {
   GitHubLogoIcon,
   HamburgerMenuIcon,
   Cross1Icon,
-  MoonIcon,
-  ChevronDownIcon,
 } from "@radix-ui/react-icons";
-import * as Accordion from "@radix-ui/react-accordion";
 
 // Custom Component Imports
 import IconButton from "@/components/button/IconButton";
+import ThemeIcon from "@/components/layout/ThemeIcon";
+import SidebarContent from "@/components/layout/SidebarContent";
 
 // React Spring Imports
 import { animated, useSpring } from "@react-spring/web";
-import { pages } from "../../services/pages/pages";
 
-const ThemeIcon = () => {
-  const [mounted, setMounted] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-    if (theme === "dark") {
-      setDarkMode(true);
-    }
-  }, []);
-
-  if (!mounted) {
-    return <IconButton icon={<MoonIcon />} className="text-white" />;
-  }
-
-  const handleThemeToggle = () => {
-    if (darkMode) {
-      setTheme("light");
-      setDarkMode(false);
-    } else {
-      setTheme("dark");
-      setDarkMode(true);
-    }
-  };
-
-  return (
-    <IconButton
-      icon={<MoonIcon />}
-      className={`${darkMode ? "text-yellow-400" : "text-white"}`}
-      onClick={handleThemeToggle}
-    />
-  );
-};
-
-const SidebarContent = () => {
-  const pathname = usePathname();
-  const urlRoot = pathname.split("/");
-
-  return (
-    <Accordion.Root
-      type="multiple"
-      className="w-64 text-black dark:bg-gray-800 dark:text-white"
-      defaultValue={[urlRoot[1]]}
-    >
-      {pages.map((page) => {
-        return (
-          <Accordion.AccordionItem
-            key={page.root}
-            id={`${page.root}-root`}
-            data-test={`${page.root}-root`}
-            value={page.root}
-            className="border-b-2 dark:border-b-gray-800"
-          >
-            <Accordion.AccordionHeader>
-              <Accordion.AccordionTrigger className="AccordionTrigger flex h-full w-full items-center justify-between p-3 text-base">
-                {page.level}
-                <ChevronDownIcon className="AccordionChevron" aria-hidden />
-              </Accordion.AccordionTrigger>
-            </Accordion.AccordionHeader>
-            <Accordion.AccordionContent className="AccordionContent">
-              {page.contents.map((link) => {
-                const pageLink = `/${page.root}/${link.link}`;
-                return (
-                  <Link
-                    key={link.name}
-                    id={`${link.link}-link`}
-                    data-test={`${link.link}-link`}
-                    aria-current={pathname === pageLink ? "page" : "false"}
-                    data-current={pathname === pageLink ? "page" : "false"}
-                    href={pageLink}
-                    className={`block p-3 pl-8 text-sm last-of-type:pb-6 hover:underline ${
-                      pathname === pageLink
-                        ? "font-medium text-[#CC3E3E] dark:text-white"
-                        : ""
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
-            </Accordion.AccordionContent>
-          </Accordion.AccordionItem>
-        );
-      })}
-    </Accordion.Root>
-  );
-};
-
-const Header = () => {
+const Layout = () => {
   // State to manage the visibility of the sidebar
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -265,4 +170,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Layout;

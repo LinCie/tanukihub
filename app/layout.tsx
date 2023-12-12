@@ -4,7 +4,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
-import Header from "@/components/layout/Header";
+import Layout from "@/components/layout/Layout";
 
 const roboto = Roboto({
   weight: ["400", "500", "700"],
@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${roboto.className} bg-white dark:bg-gray-950`}>
         <Providers>
-          <Header />
+          <Layout />
           <main
             id="content"
             className="ml-0 mt-14 p-6 md:ml-64 md:mt-16 md:p-14"
