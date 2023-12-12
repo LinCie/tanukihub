@@ -24,5 +24,8 @@ jobs:
       - name: Run Build
         run: npm run build
 
-      - name: Start and Test
+      - name: Start and Test E2E
         run: npm run e2e:headless
+
+      - name: Test Components
+        run: npm run component:headless
