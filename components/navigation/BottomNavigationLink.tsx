@@ -34,9 +34,9 @@ export default function BottomNavigationLink({
         {children}
       </div>
       {right ? (
-        <ArrowRightIcon className="h-5 w-5 md:h-6 md:w-6" />
+        <ArrowRightIcon data-test="right-arrow" className="h-5 w-5 md:h-6 md:w-6" />
       ) : (
-        <ArrowLeftIcon className="h-5 w-5 md:h-6 md:w-6" />
+        <ArrowLeftIcon data-test="left-arrow" className="h-5 w-5 md:h-6 md:w-6" />
       )}
     </Link>
   );

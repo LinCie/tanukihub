@@ -5,8 +5,10 @@ interface Props extends ComponentPropsWithoutRef<"li"> {
 }
 
 export default function ListContent({ children, className, ...props }: Props) {
+  const customClass = className ? className : ""
+
   return (
-    <li className={`${className}`.trim()} {...props}>
+    <li className={`${customClass}`.trim()} {...props}>
       {children}
     </li>
   );
