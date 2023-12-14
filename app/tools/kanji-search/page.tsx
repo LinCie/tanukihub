@@ -26,6 +26,7 @@ import instance from "@/services/api/api";
 import PageTitle from "@/components/typography/PageTitle";
 import { KanjiCharacter } from "@/services/dictionaries/kanjidic";
 import Japanese from "@/components/typography/Japanese";
+import PageLoading from "@/components/loading/PageLoading";
 
 /* 
   SearchForm stuffs
@@ -460,15 +461,17 @@ export default function KanjiSearch() {
     setFormMounted(true);
   }, []);
 
+  if (!formMounted) {
+    return <PageLoading />
+  }
+
   return (
     <div id="kanji-search">
       <PageTitle>Kanji Search</PageTitle>
-      {formMounted && (
-        <SearchForm
-          setCharacters={handleCharacters}
-          setLoading={handleLoading}
-        />
-      )}
+      <SearchForm
+        setCharacters={handleCharacters}
+        setLoading={handleLoading}
+      />
       {loading ? (
         <CharacterDisplayLoading />
       ) : (
