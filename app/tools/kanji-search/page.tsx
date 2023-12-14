@@ -18,9 +18,6 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 
-// React Spring Imports
-import { animated, useSpring } from "@react-spring/web";
-
 // Local Imports
 import instance from "@/services/api/api";
 import PageTitle from "@/components/typography/PageTitle";
@@ -353,18 +350,10 @@ const MiscDisplay = ({ character }: MiscDisplayProps) => {
 
 // The loading skeleton, it will loop a skeleton animation. Used to show that the search is currently underway
 const CharacterDisplayLoading = () => {
-  const springs = useSpring({
-    loop: { reverse: true },
-    from: { opacity: 1 },
-    to: { opacity: 0.5 },
-    config: { duration: 1000, tension: 120, friction: 14 },
-  });
-
   return (
-    <animated.section
+    <section
       id="character-display-loading"
-      style={springs}
-      className="mb-10"
+      className="animate-pulse mb-10"
     >
       <div id="top-display" className="flex flex-col lg:flex-row lg:gap-2">
         <div id="kanji-display" className="mb-5 flex flex-col lg:flex-[3]">
@@ -402,7 +391,7 @@ const CharacterDisplayLoading = () => {
           </div>
         </div>
       </div>
-    </animated.section>
+    </section>
   );
 };
 
