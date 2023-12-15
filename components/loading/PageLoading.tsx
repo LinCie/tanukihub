@@ -9,19 +9,19 @@ export default function PageLoading() {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <div className="flex items-center gap-8">
-        <Japanese className="select-none text-3xl font-medium">
+        <Japanese className="select-none text-2xl font-medium md:text-3xl">
           ちょっと待ってね。。。
         </Japanese>
-        <Spinner className="h-8 w-8" />
+        <Spinner className="h-6 w-6 md:h-8 md:w-8" />
       </div>
       <Image
-        className="h-72 w-72"
+        className="h-52 w-52 md:h-72 md:w-72"
         src={mari}
         alt="Loading..."
         width={500}
         height={500}
       />
-      <div className="flex select-none gap-2 text-lg">
+      <div className="flex select-none gap-2 text-base md:text-lg">
         <Link
           href="https://www.pixiv.net/en/artworks/113407888"
           target="_blank"
