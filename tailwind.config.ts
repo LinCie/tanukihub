@@ -13,10 +13,10 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily: {
+        'zen': ["'Zen Kaku Gothic New'"]
+      }
     },
-    fontFamily: {
-      'zen': ["'Zen Kaku Gothic New'"]
-    }
   },
   plugins: [],
   darkMode: "class"
