@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 // Radix Imports
-import { MagnifyingGlassIcon, InfoCircledIcon } from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 
 // Local Imports
@@ -24,7 +24,6 @@ import PageTitle from "@/components/typography/PageTitle";
 import { KanjiCharacter } from "@/services/dictionaries/kanjidic";
 import Japanese from "@/components/typography/Japanese";
 import PageLoading from "@/components/loading/PageLoading";
-import Spinner from "@/components/loading/Spinner";
 
 /* 
   SearchForm stuffs
