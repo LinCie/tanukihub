@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import PageLoading from "@/components/loading/PageLoading";
 import Japanese from "@/components/typography/Japanese";
 import instance from "@/services/api/api";
 import { KanjiCharacter } from "@/services/dictionaries/kanjidic";
@@ -31,13 +30,20 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
     <div className="mb-5 lg:flex-[3]">
       <div id="kanji-character" className="mb-4 flex justify-center">
         <div id="kanji-character-container" className="h-32 w-32">
-          <div id="kanji-character-text" className="select-none text-9xl">
+          <div
+            data-test="kanji-information"
+            id="kanji-character-text"
+            className="select-none text-9xl"
+          >
             <Japanese>{character.literal}</Japanese>
           </div>
         </div>
       </div>
       <div className="flex flex-col">
-        <div id="kanji-meaning" className="text-center text-2xl lg:text-xl">
+        <div
+          id="kanji-meaning"
+          className="text-center text-2xl lg:text-xl"
+        >
           {meanings.join(", ")}
         </div>
       </div>
@@ -126,7 +132,7 @@ const MiscDisplay = ({ character }: MiscDisplayProps) => {
 // The loading skeleton, it will loop a skeleton animation. Used to show that the search is currently underway
 const CharacterDisplayLoading = () => {
   return (
-    <section id="character-display-loading" className="mb-10 animate-pulse">
+    <section id="character-display-loading" className="animate-pulse">
       <div id="top-display" className="flex flex-col lg:flex-row lg:gap-2">
         <div id="kanji-display" className="mb-5 flex flex-col lg:flex-[3]">
           <div className="mb-4 h-32 w-full rounded bg-gray-200 dark:bg-gray-900" />
@@ -186,7 +192,7 @@ const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
   return (
     <div
       data-test="character-display"
-      className="mb-10 flex flex-col lg:flex-row lg:gap-2"
+      className="flex flex-col lg:flex-row lg:gap-2"
     >
       <KanjIDisplay character={character} />
       <div className="flex flex-col sm:flex-row sm:gap-2 lg:flex-[7]">
@@ -224,7 +230,7 @@ export default function Page({ params }: { params: { kanji: string } }) {
   }, []);
 
   if (!character) {
-    return <PageLoading />;
+    return <CharacterDisplayLoading />;
   } else {
     return <CharacterDisplay character={character} />;
   }

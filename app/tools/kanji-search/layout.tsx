@@ -4,6 +4,7 @@
 import React, {
   ComponentPropsWithRef,
   ReactNode,
+  createContext,
   useEffect,
   useState,
 } from "react";
@@ -22,8 +23,8 @@ import * as RadioGroup from "@radix-ui/react-radio-group";
 import instance from "@/services/api/api";
 import PageTitle from "@/components/typography/PageTitle";
 import { KanjiCharacter } from "@/services/dictionaries/kanjidic";
-import Japanese from "@/components/typography/Japanese";
 import PageLoading from "@/components/loading/PageLoading";
+import { usePathname, useRouter } from "next/navigation";
 
 /* 
   SearchForm stuffs
@@ -79,12 +80,19 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
     },
   });
 
+  const router = useRouter();
+  const pathname = usePathname();
+
   // Used for the "by" input
   const watchLang = watch("lang", "en");
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     try {
       setLoading(true);
+
+      if (pathname !== "/tools/kanji-search/") {
+        router.push("/tools/kanji-search/");
+      }
 
       const response = await instance.get(`/kanji`, { params: inputs });
       const data: ResponseData = response.data;
@@ -234,68 +242,21 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
   );
 };
 
-/*
-  Loading Skeleton
-*/
-
-// The loading skeleton, it will loop a skeleton animation. Used to show that the search is currently underway
-const CharacterDisplayLoading = () => {
-  return (
-    <>
-      {[...Array(5)].map((x, i) => (
-        <div
-          key={`loading ${i}`}
-          className="mb-4 h-40 w-40 animate-pulse bg-gray-200 dark:bg-gray-900"
-        />
-      ))}
-    </>
-  );
-};
-
-/*
-  Character Display Stuffs
-*/
-
-interface CharacterDisplayProps {
-  character: KanjiCharacter;
-}
-
-// Used to display the characters returned from the search
-const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
-  // Don't display anything if character doesn't exist
-  if (!character) {
-    return null;
-  }
-
-  // Create a string array filled with the kanji's meaning
-  const meanings: string[] = character.readingMeaning.groups.flatMap((group) =>
-    group.meanings.map((m) => m.value),
-  );
-
-  return (
-    <div className="relative mb-4">
-      <Link
-        href={`/tools/kanji-search/${character.literal}`}
-        data-test="character-display"
-        className="group relative flex h-40 w-40 cursor-pointer select-none flex-col items-center justify-center transition-opacity active:opacity-75"
-      >
-        <div className="mb-2 text-7xl font-medium transition-all duration-75 ease-in-out group-hover:text-[#CC3E3E] group-active:scale-95">
-          <Japanese>{character.literal}</Japanese>
-        </div>
-        <div className="w-full truncate text-center">{meanings.join(", ")}</div>
-        <div className="absolute bottom-1 right-1 opacity-0 transition-opacity duration-75 ease-in-out hover:text-[#CC3E3E] hover:underline group-hover:opacity-100">
-          View
-        </div>
-      </Link>
-    </div>
-  );
-};
-
 /* 
   KanjiSearch
 */
 
-export default function KanjiSearch() {
+export const CharactersContext = createContext<KanjiCharacter[] | undefined>(
+  undefined,
+);
+
+export const LoadingContext = createContext<boolean>(false);
+
+export default function KanjiSearch({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   // Where character resides
   const [characters, setCharacters] = useState<KanjiCharacter[]>();
   // State used to show that the search is currently underway
@@ -324,15 +285,11 @@ export default function KanjiSearch() {
     <div id="kanji-search">
       <PageTitle>Kanji Search</PageTitle>
       <SearchForm setCharacters={handleCharacters} setLoading={handleLoading} />
-      <section className="flex flex-row flex-wrap justify-around gap-x-4">
-        {loading ? (
-          <CharacterDisplayLoading />
-        ) : (
-          characters?.map((character) => (
-            <CharacterDisplay key={character.literal} character={character} />
-          ))
-        )}
-      </section>
+      <CharactersContext.Provider value={characters}>
+        <LoadingContext.Provider value={loading}>
+          {children}
+        </LoadingContext.Provider>
+      </CharactersContext.Provider>
       <div id="attribution">
         <p>
           TanukiHub's kanji search uses{" "}
