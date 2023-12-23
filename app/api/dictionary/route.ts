@@ -85,7 +85,7 @@ export async function GET(req: Request) {
     }
 
     if (words) {
-      return NextResponse.json({ words: words }, { status: 200 });
+      return NextResponse.json({ words: words.words }, { status: 200 });
     } else {
       return NextResponse.json({ message: "Word not found" }, { status: 400 });
     }
