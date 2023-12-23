@@ -1,3 +1,32 @@
+describe("Layout Testing", () => {
+  // Visit kanji-search link
+  beforeEach(() => {
+    cy.visit("tools/kanji-search");
+  });
+
+  describe("Sidebar", () => {
+    it("should show correct current navigation", () => {
+      cy.getBySel("tools-root").should("have.data", "state", "open");
+
+      cy.getBySel("kanji-search-link").should("have.data", "current", "page");
+    });
+  });
+});
+
+describe("Navigation Testing", () => {
+  it("Should be able to navigate", () => {
+    cy.visit("/");
+
+    cy.getBySel("tools-root").click().should("have.data", "state", "open");
+
+    cy.getBySel("kanji-search-link").click();
+
+    cy.url().should("include", "/kanji-search");
+
+    cy.getBySel("page-title").contains("Kanji Search");
+  });
+});
+
 describe("Functionality Test", () => {
   beforeEach(() => {
     cy.visit("/tools/kanji-search");
@@ -87,22 +116,52 @@ describe("Functionality Test", () => {
     });
   });
 
-  describe("Form", () => {
-    it("should be able to search", () => {
+  describe("Main Functionality", () => {
+    beforeEach(() => {
       // Intercept GET API Request to use later
       cy.intercept("GET", "/api/kanji*").as("kanjiAPI");
 
       // Type Raccoon into the search input
-      cy.getBySel("search").clear().type("raccoon");
+      cy.getBySel("search").clear().type("Raccoon");
 
       // Click the submit button
       cy.getBySel("submit").click();
 
       // Wait for API to send the result
       cy.wait("@kanjiAPI");
+    });
 
+    it("should be able to search", () => {
       // Assert Character display to be visible
       cy.getBySel("character-display").should("be.visible");
+    });
+
+    describe("Kanji Information Testing", () => {
+      beforeEach(() => {
+        cy.getBySel("character-display").first().click();
+        cy.wait("@kanjiAPI");
+      });
+
+      it("should be able to navigate to kanji information", () => {
+        cy.url().then((url) => {
+          const slug = url.split("/").pop();
+          expect(slug).to.not.eq("kanji-search");
+        });
+      });
+
+      it("should be able to show the information", () => {
+        cy.getBySel("kanji-information").should("be.visible");
+      });
+
+      it("should be able to navigate back", () => {
+        cy.getBySel("search").clear().type("Raccoon");
+        cy.getBySel("submit").click();
+        cy.wait("@kanjiAPI");
+        cy.url().then((url) => {
+          const slug = url.split("/").pop();
+          expect(slug).to.eq("kanji-search");
+        });
+      });
     });
   });
 });
