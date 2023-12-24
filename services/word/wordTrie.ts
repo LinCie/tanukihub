@@ -25,7 +25,7 @@ class Trie {
   insert(word: string, wordId: string): void {
     let node = this.root;
 
-    for (let char of word) {
+    for (let char of word.toLowerCase()) {
       if (!node.children[char]) {
         node.children[char] = new TrieNode();
       }
