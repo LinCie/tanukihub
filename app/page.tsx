@@ -12,7 +12,7 @@ export default function Home() {
       <PageTitle>Welcome to TanukiHub</PageTitle>
       <Paragraph>
         Kon'nichiwa (
-        <Japanese className="font-bold">
+        <Japanese className="whitespace-nowrap font-bold">
           <DictionarySearch searchFor="こんにちは">こんにちは</DictionarySearch>
         </Japanese>
         )! Are you ready to embark on an exciting journey into the world of the
@@ -31,7 +31,7 @@ export default function Home() {
         language master? Dive into the captivating world of TanukiHub and
         discover the beauty of Japanese language and culture. Start your
         learning adventure now! And who knows, you might soon be able to say, "
-        <Japanese className="font-bold">
+        <Japanese className="whitespace-nowrap font-bold">
           <DictionarySearch searchFor="日本語">日本語</DictionarySearch>を
           <DictionarySearch searchFor="話す">話せます</DictionarySearch>!
         </Japanese>

@@ -11,6 +11,7 @@ import List from "@/components/list/List";
 import ListContent from "@/components/list/ListContent";
 import Bold from "@/components/typography/Bold";
 import Japanese from "@/components/typography/Japanese";
+import DictionarySearch from "@/components/hover/DictionarySearch";
 
 export const metadata: Metadata = {
   title: "TanukiHub | Intro to Japanese",
@@ -28,18 +29,27 @@ const WritingSystemSection = () => {
       <List type="disc" position="outside" className="mx-5">
         <ListContent className="mb-1 text-sm text-black last-of-type:mb-4 dark:text-white sm:text-base last-of-type:sm:mb-5">
           <Bold>
-            Hiragana (<Japanese>平仮名</Japanese>)
+            Hiragana (
+            <Japanese>
+              <DictionarySearch searchFor="平仮名">平仮名</DictionarySearch>
+            </Japanese>
+            )
           </Bold>
           . A syllabary used for native Japanese words and grammatical elements.
           For example,{" "}
           <Japanese className="font-bold">
-            たべる | た(ta)べ(be)る(ru) | taberu (to eat)
+            <DictionarySearch searchFor="たべる">たべる</DictionarySearch> |
+            た(ta)べ(be)る(ru) | taberu (to eat)
           </Japanese>{" "}
           is written in Hiragana
         </ListContent>
         <ListContent className="mb-1 text-sm text-black last-of-type:mb-4 dark:text-white sm:text-base last-of-type:sm:mb-5">
           <Bold>
-            Katakana (<Japanese>片仮名</Japanese>)
+            Katakana (
+            <Japanese>
+              <DictionarySearch searchFor="片仮名">片仮名</DictionarySearch>
+            </Japanese>
+            )
           </Bold>
           . Another syllabary used primarily for loanwords, foreign names, and
           onomatopoeia. For example,{" "}
@@ -52,13 +62,18 @@ const WritingSystemSection = () => {
         </ListContent>
         <ListContent className="mb-1 text-sm text-black last-of-type:mb-4 dark:text-white sm:text-base last-of-type:sm:mb-5">
           <Bold>
-            Kanji (<Japanese>漢字</Japanese>)
+            Kanji (
+            <Japanese>
+              <DictionarySearch searchFor="漢字">漢字</DictionarySearch>
+            </Japanese>
+            )
           </Bold>
           . Logographic characters borrowed from Chinese, representing words and
           concepts. There are thousands of Kanji characters in use, and
           mastering them is a lifelong endeavor. For example,{" "}
           <Japanese className="font-bold">
-            食べる | 食(ta)べ(be)る(ru) | taberu (to eat)
+            <DictionarySearch searchFor="食べる">食べる</DictionarySearch> |
+            食(ta)べ(be)る(ru) | taberu (to eat)
           </Japanese>{" "}
           is the Kanji representation of "to eat." The Kanji character 食
           (shoku) means "food" or "to eat," and it adds depth and meaning to the
