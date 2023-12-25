@@ -4,14 +4,18 @@ import Paragraph from "@/components/typography/Paragraph";
 import BottomNavigation from "@/components/navigation/BottomNavigation";
 import BottomNavigationLink from "@/components/navigation/BottomNavigationLink";
 import Japanese from "@/components/typography/Japanese";
+import DictionarySearch from "@/components/hover/DictionarySearch";
 
 export default function Home() {
   return (
     <div id="home">
       <PageTitle>Welcome to TanukiHub</PageTitle>
       <Paragraph>
-        Kon'nichiwa (<Japanese className="font-bold">こんにちは</Japanese>)! Are
-        you ready to embark on an exciting journey into the world of the
+        Kon'nichiwa (
+        <Japanese className="font-bold">
+          <DictionarySearch searchFor="こんにちは">こんにちは</DictionarySearch>
+        </Japanese>
+        )! Are you ready to embark on an exciting journey into the world of the
         Japanese language and culture? Look no further than TanukiHub, your
         ultimate destination for mastering everything Japanese.
       </Paragraph>
@@ -26,9 +30,12 @@ export default function Home() {
         So, are you ready to take the first step towards becoming a Japanese
         language master? Dive into the captivating world of TanukiHub and
         discover the beauty of Japanese language and culture. Start your
-        learning adventure now, and who knows, you might soon be able to say, "
-        <Japanese className="font-bold">日本語を話せます!</Japanese>" (I can
-        speak Japanese!)
+        learning adventure now! And who knows, you might soon be able to say, "
+        <Japanese className="font-bold">
+          <DictionarySearch searchFor="日本語">日本語</DictionarySearch>を
+          <DictionarySearch searchFor="話す">話せます</DictionarySearch>!
+        </Japanese>
+        " (I can speak Japanese!)
       </Paragraph>
       <BottomNavigation>
         <div></div>
