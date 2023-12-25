@@ -1,31 +1,30 @@
 "use client";
 
 // React Imports
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 
-// React Spring Imports
-import { animated, useSpring } from "@react-spring/web";
+// Radix Imports
+import * as Tooltip from "@radix-ui/react-tooltip";
 
 // Custom Component Imports
 import { Word } from "@/services/dictionaries/jmdict";
 import instance from "@/services/api/api";
+import Spinner from "../loading/Spinner";
 
 interface ResponseData {
   words: Word[];
 }
 
-interface WordInfoProps {
+interface DictionarySearchProps {
+  children?: ReactNode;
   searchFor?: string;
 }
 
-const WordInfo = ({ searchFor }: WordInfoProps) => {
-  const [meanings, setMeanings] = useState<string[]>();
-  const [found, setFound] = useState<boolean>();
-
-  // Initial style for the info
-  const [springs, springsApi] = useSpring(() => ({
-    from: { opacity: 0 },
-  }));
+export default function DictionarySearch({
+  children,
+  searchFor,
+}: DictionarySearchProps) {
+  const [meanings, setMeanings] = useState<string[]>([]);
 
   const getWord = async () => {
     try {
@@ -39,63 +38,54 @@ const WordInfo = ({ searchFor }: WordInfoProps) => {
       const data: ResponseData = response.data;
 
       if (data.words) {
+        // Create a temp string array to store the meanings
         const newMeanings: string[] = [];
+        // Get all the meanings and push it into new meannings
         data.words[0].sense.forEach((sense) => {
           sense.gloss.forEach((gloss) => newMeanings.push(gloss.text));
         });
-        if (newMeanings.length > 0) {
-          setMeanings(newMeanings);
-          setFound(true);
-          // Start the wordinfo opacity animation
-          springsApi.start({
-            to: { opacity: 1 },
-            config: { duration: 50, tension: 120, friction: 14 },
-          });
-        }
+        // Set the newmeanings into meanings
+        setMeanings(newMeanings);
       }
     } catch (err) {
       console.log(err);
     }
   };
 
-  // Wait for 1500 ms before showing the word info
-  useEffect(() => {
-    setTimeout(() => getWord(), 2000);
-  }, []);
+  // Call whenever the tooltip open state is changed. Fetch the data if it's open, don't do anything otherwise
+  const handleOpenChange = (open: boolean) => {
+    // Do not fetch when meanings contains strings (Word Found)
+    if (meanings.length > 0) {
+      return;
+    }
 
-  // Return the word info otherwise
-  return found ? (
-    <animated.span
-      style={springs}
-      className="z-[101] absolute left-1/2 top-[-40px] hidden h-fit max-w-xs -translate-x-1/2 transform items-center justify-center border-[1px] border-[#CC3E3E] bg-white p-1 font-normal transition-all dark:border-white dark:bg-gray-950 md:flex"
-    >
-      <span className="truncate">
-        {meanings?.join(", ")}
-      </span>
-    </animated.span>
-  ) : null;
-};
-
-interface DictionarySearchProps {
-  children?: ReactNode;
-  searchFor?: string;
-}
-
-export default function DictionarySearch({
-  children,
-  searchFor,
-}: DictionarySearchProps) {
-  // Used to show the Word Info
-  const [showInfo, setShowInfo] = useState<boolean>(false);
+    if (open) {
+      getWord();
+    }
+  };
 
   return (
-    <span
-      onMouseEnter={() => setShowInfo(true)}
-      onMouseLeave={() => setShowInfo(false)}
-      className="relative md:cursor-help md:underline md:decoration-dotted"
-    >
-      {showInfo ? <WordInfo searchFor={searchFor} /> : null}
-      {children}
-    </span>
+    <Tooltip.Provider delayDuration={750}>
+      <Tooltip.Root onOpenChange={handleOpenChange}>
+        <Tooltip.Trigger asChild>
+          <span className="relative md:cursor-help md:underline md:decoration-dotted">
+            {children}
+          </span>
+        </Tooltip.Trigger>
+        <Tooltip.Portal>
+          <Tooltip.Content
+            className="text-violet11 z-[101] max-w-xs select-none truncate rounded-md bg-slate-50 px-3 py-2 text-base shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
+            sideOffset={5}
+          >
+            {meanings.length > 0 ? (
+              meanings.join(", ")
+            ) : (
+              <Spinner className="h-5 w-5" />
+            )}
+            <Tooltip.Arrow className="fill-white dark:fill-gray-700" />
+          </Tooltip.Content>
+        </Tooltip.Portal>
+      </Tooltip.Root>
+    </Tooltip.Provider>
   );
 }
