@@ -25,6 +25,7 @@ export default function DictionarySearch({
   searchFor,
 }: DictionarySearchProps) {
   const [meanings, setMeanings] = useState<string[]>([]);
+  const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
 
   const getWord = async () => {
     try {
@@ -54,6 +55,8 @@ export default function DictionarySearch({
 
   // Call whenever the tooltip open state is changed. Fetch the data if it's open, don't do anything otherwise
   const handleOpenChange = (open: boolean) => {
+    setTooltipOpen(open);
+
     // Do not fetch when meanings contains strings (Word Found)
     if (meanings.length > 0) {
       return;
@@ -67,7 +70,11 @@ export default function DictionarySearch({
   return (
     <Tooltip.Provider delayDuration={350}>
       <Tooltip.Root onOpenChange={handleOpenChange}>
-        <Tooltip.Trigger asChild>
+        <Tooltip.Trigger
+          data-test="dictionary-tooltip"
+          data-state={tooltipOpen ? "open" : "close"}
+          asChild
+        >
           <span className="relative md:cursor-help md:underline md:decoration-[#CC3E3E] md:decoration-dotted md:dark:decoration-white">
             {children}
           </span>
