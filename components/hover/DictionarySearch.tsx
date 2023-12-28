@@ -4,7 +4,7 @@
 import { ReactNode, useState } from "react";
 
 // Radix Imports
-import * as Tooltip from "@radix-ui/react-tooltip";
+import * as Popover from "@radix-ui/react-popover";
 
 // Custom Component Imports
 import { Word } from "@/services/dictionaries/jmdict";
@@ -25,7 +25,6 @@ export default function DictionarySearch({
   searchFor,
 }: DictionarySearchProps) {
   const [meanings, setMeanings] = useState<string[]>([]);
-  const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
 
   const getWord = async () => {
     try {
@@ -55,8 +54,6 @@ export default function DictionarySearch({
 
   // Call whenever the tooltip open state is changed. Fetch the data if it's open, don't do anything otherwise
   const handleOpenChange = (open: boolean) => {
-    setTooltipOpen(open);
-
     // Do not fetch when meanings contains strings (Word Found)
     if (meanings.length > 0) {
       return;
@@ -68,31 +65,44 @@ export default function DictionarySearch({
   };
 
   return (
-    <Tooltip.Provider delayDuration={350}>
-      <Tooltip.Root onOpenChange={handleOpenChange}>
-        <Tooltip.Trigger
-          data-test="dictionary-tooltip"
-          data-state={tooltipOpen ? "open" : "close"}
-          asChild
+    <Popover.Root onOpenChange={handleOpenChange}>
+      <Popover.Trigger data-test="dictionary-popover" asChild>
+        <span className="relative cursor-help underline decoration-[#CC3E3E] decoration-dotted dark:decoration-white">
+          {children}
+        </span>
+      </Popover.Trigger>
+      <Popover.Portal>
+        <Popover.Content
+          className="z-[101] max-w-xs select-none truncate rounded-md bg-[#CC3E3E] px-3 py-2 text-base text-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] hover:whitespace-normal focus:outline-none data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
+          sideOffset={5}
+          side="top"
         >
-          <span className="relative md:cursor-help md:underline md:decoration-[#CC3E3E] md:decoration-dotted md:dark:decoration-white">
-            {children}
-          </span>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <Tooltip.Content
-            className="z-[101] max-w-xs select-none truncate rounded-md bg-[#CC3E3E] px-3 py-2 text-base text-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] hover:whitespace-normal data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
-            sideOffset={5}
-          >
-            {meanings.length > 0 ? (
-              meanings.join(", ")
-            ) : (
-              <Spinner className="h-5 w-5" />
-            )}
-            <Tooltip.Arrow className="fill-[#CC3E3E] dark:fill-gray-700" />
-          </Tooltip.Content>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
+          {meanings.length > 0 ? (
+            meanings.join(", ")
+          ) : (
+            <Spinner className="h-5 w-5" />
+          )}
+          <Popover.Arrow className="fill-[#CC3E3E] dark:fill-gray-700" />
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
+
+    // Note to me in the future, figure out how to make this clickable, somehow
+    // I would prefer tooltip honestly but it won't fucking work on mobile
+    // <Tooltip.Provider delayDuration={350}>
+    //   <Tooltip.Root onOpenChange={handleOpenChange}>
+    //     <Tooltip.Trigger
+    //       data-test="dictionary-tooltip"
+    //       asChild
+    //     >
+    //     </Tooltip.Trigger>
+    //     <Tooltip.Portal>
+    //       <Tooltip.Content
+    //       >
+    //         <Tooltip.Arrow className="fill-[#CC3E3E] dark:fill-gray-700" />
+    //       </Tooltip.Content>
+    //     </Tooltip.Portal>
+    //   </Tooltip.Root>
+    // </Tooltip.Provider>
   );
 }
