@@ -65,16 +65,16 @@ export default function DictionarySearch({
   };
 
   return (
-    <Tooltip.Provider delayDuration={750}>
+    <Tooltip.Provider delayDuration={350}>
       <Tooltip.Root onOpenChange={handleOpenChange}>
         <Tooltip.Trigger asChild>
-          <span className="relative md:cursor-help md:underline md:decoration-dotted">
+          <span className="relative md:cursor-help md:underline md:decoration-[#CC3E3E] md:decoration-dotted md:dark:decoration-white">
             {children}
           </span>
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="text-violet11 z-[101] max-w-xs select-none truncate rounded-md bg-slate-50 px-3 py-2 text-base shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
+            className="z-[101] max-w-xs select-none truncate rounded-md bg-[#CC3E3E] px-3 py-2 text-base text-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] hover:whitespace-normal data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
             sideOffset={5}
           >
             {meanings.length > 0 ? (
@@ -82,7 +82,7 @@ export default function DictionarySearch({
             ) : (
               <Spinner className="h-5 w-5" />
             )}
-            <Tooltip.Arrow className="fill-white dark:fill-gray-700" />
+            <Tooltip.Arrow className="fill-[#CC3E3E] dark:fill-gray-700" />
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>
