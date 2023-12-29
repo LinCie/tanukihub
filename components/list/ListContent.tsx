@@ -8,7 +8,7 @@ export default function ListContent({ children, className, ...props }: Props) {
   const customClass = className ? className : ""
 
   return (
-    <li className={`${customClass}`.trim()} {...props}>
+    <li className={`list-item ${customClass}`.trim()} {...props}>
       {children}
     </li>
   );
