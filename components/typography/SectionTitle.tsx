@@ -9,7 +9,7 @@ export default function SectionTitle({ children, className, ...props }: Props) {
 
   return (
     <h2
-      className={`mb-2 text-base font-bold text-black dark:text-white sm:mb-3 sm:text-xl ${customClass}`.trim()}
+      className={`mb-3 text-base font-bold text-black dark:text-white sm:mb-4 sm:text-lg ${customClass}`.trim()}
       {...props}
     >
       {children}
