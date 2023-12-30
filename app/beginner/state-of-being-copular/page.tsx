@@ -78,10 +78,9 @@ const NonPastTenseSection = () => {
       </Paragraph>
       <KeyPoint>
         <KeyPointText>
-          Similar to Non Past Tense, if you want to declare something as a
-          negation (declaring something that is not), you can attach "
-          <Japanese>ではない</Japanese>" in informal situations, and "
-          <Japanese>ではありません</Japanese>" in formal situations.
+          If you want to declare something, you'll have to attach the thing you
+          want to declare with "<Japanese>だ</Japanese>" in informal situations,
+          or "<Japanese>です</Japanese>" in formal situations.
         </KeyPointText>
       </KeyPoint>
       <Vocabulary vocabularies={vocabularies} />
