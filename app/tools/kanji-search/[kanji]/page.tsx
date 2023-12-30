@@ -33,17 +33,14 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
           <div
             data-test="kanji-information"
             id="kanji-character-text"
-            className="select-none text-9xl"
+            className="text-main-title-dark dark:text-main-title-light select-none text-9xl"
           >
             <Japanese>{character.literal}</Japanese>
           </div>
         </div>
       </div>
       <div className="flex flex-col">
-        <div
-          id="kanji-meaning"
-          className="text-center text-2xl lg:text-xl"
-        >
+        <div id="kanji-meaning" className="text-center text-2xl lg:text-xl">
           {meanings.join(", ")}
         </div>
       </div>
@@ -74,7 +71,9 @@ const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
 
   return (
     <div id="reading-display" className="mb-5 flex flex-1 flex-col">
-      <h2 className="mb-2 text-lg font-bold">Readings</h2>
+      <h2 className="text-main-title-dark dark:text-main-title-light mb-2 text-lg font-bold">
+        Readings
+      </h2>
       <div id="kunyomi-display" className="mb-1 flex gap-2">
         <div>Kun:</div>
         <Japanese>
@@ -108,7 +107,9 @@ const MiscDisplay = ({ character }: MiscDisplayProps) => {
 
   return (
     <div id="misc-display" className="flex-1">
-      <h2 className="mb-2 text-lg font-bold">Miscellaneous</h2>
+      <h2 className="text-main-title-dark dark:text-main-title-light mb-2 text-lg font-bold">
+        Miscellaneous
+      </h2>
       {grade && (
         <div className="mb-1 flex gap-2">
           <div>Taught in: </div>

@@ -109,25 +109,29 @@ const Layout = () => {
   return (
     <>
       {/* Header section */}
-      <header className="fixed left-0 right-0 top-0 z-[100] flex h-14 flex-row items-center justify-between bg-[#CC3E3E] px-2 shadow-md dark:bg-gray-700 md:h-16">
+      <header className="bg-main-identity fixed left-0 right-0 top-0 z-[100] flex h-14 flex-row items-center justify-between px-2 shadow-md dark:bg-gray-700 md:h-16">
         <div id="header-left-side" className="flex items-center gap-2">
           <div className="relative block md:hidden">
             <AnimatedSidebarToggle
               style={hamburgerSprings}
               icon={<HamburgerMenuIcon />}
               onClick={handleSidebarOpen}
-              className="relative text-white"
+              className="text-main-title-light relative"
               aria-label="Toggle Sidebar Open"
             />
             <AnimatedSidebarToggle
               style={crossSprings}
               icon={<Cross1Icon />}
               onClick={handleSidebarOpen}
-              className="absolute left-0 top-0 text-white"
+              className="text-main-title-light absolute left-0 top-0"
               aria-label="Toggle Sidebar Close"
             />
           </div>
-          <Link aria-label="Return to the front page" href="/" className="flex select-none items-center gap-1">
+          <Link
+            aria-label="Return to the front page"
+            href="/"
+            className="flex select-none items-center gap-1"
+          >
             <Image
               src="/logo.jpg"
               alt="TanukiHub Logo"
@@ -135,12 +139,21 @@ const Layout = () => {
               height={500}
               className="h-8 w-8"
             />
-            <div className="text-xl font-medium text-white">TanukiHub</div>
+            <div className="text-main-title-light text-xl font-medium">
+              TanukiHub
+            </div>
           </Link>
         </div>
         <div className="flex gap-1">
-          <Link aria-label="Visit our github repository" href="https://github.com/LinCie/tanukihub" target="_blank">
-            <IconButton icon={<GitHubLogoIcon aria-label="GitHub Logo" />} className="text-white" />
+          <Link
+            aria-label="Visit our github repository"
+            href="https://github.com/LinCie/tanukihub"
+            target="_blank"
+          >
+            <IconButton
+              icon={<GitHubLogoIcon aria-label="GitHub Logo" />}
+              className="text-main-title-light"
+            />
           </Link>
           <ThemeIcon />
         </div>

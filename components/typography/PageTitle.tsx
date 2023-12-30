@@ -12,7 +12,7 @@ export default function PageTitle({ className, children, ...props }: Props) {
       id="page-title"
       data-test="page-title"
       aria-label="Page Title"
-      className={`mb-3 text-xl font-bold text-black dark:text-white sm:mb-4 sm:text-2xl ${customClass}`.trim()}
+      className={`text-main-title-dark dark:text-main-title-light mb-3 text-xl font-bold sm:mb-4 sm:text-2xl ${customClass}`.trim()}
       {...props}
     >
       {children}

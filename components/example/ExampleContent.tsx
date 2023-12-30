@@ -13,7 +13,7 @@ export default function ExampleContent({ example }: Props) {
         <div className="font-medium">
           <Japanese>{example.kana}</Japanese>
         </div>
-        <div className="text-sm italic text-black/75 dark:text-white/75 sm:text-base">
+        <div className="text-main-dark/75 dark:text-main-light/75 text-sm italic sm:text-base">
           {example.romaji}
         </div>
         <div className="mt-2 font-medium">{example.translation}</div>

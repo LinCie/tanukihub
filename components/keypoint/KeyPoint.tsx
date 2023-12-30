@@ -9,10 +9,12 @@ const KeyPoint = ({ children, className, ...props }: Props) => {
 
   return (
     <div
-      className={`mb-2 rounded-md border-2 border-[#CC3E3E] p-5 dark:border-white md:mx-16 ${customClass}`.trim()}
+      className={`border-main-identity dark:border-main-title-light mb-2 rounded-md border-2 p-5 md:mx-16 ${customClass}`.trim()}
       {...props}
     >
-      <h3 className="mb-2 font-medium">Key Points</h3>
+      <h3 className="dark:text-main-title-light text-main-title-dark mb-2 font-medium">
+        Key Points
+      </h3>
       {children}
     </div>
   );

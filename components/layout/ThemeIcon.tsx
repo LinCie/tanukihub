@@ -25,7 +25,7 @@ const ThemeIcon = () => {
   }, []);
 
   if (!mounted) {
-    return <IconButton icon={<MoonIcon />} className="text-white" />;
+    return <IconButton icon={<MoonIcon />} className="text-main-title-light" />;
   }
 
   const handleThemeToggle = () => {
@@ -41,7 +41,7 @@ const ThemeIcon = () => {
   return (
     <IconButton
       icon={<MoonIcon aria-label="Toggle Darkmode" />}
-      className={`${darkMode ? "text-yellow-400" : "text-white"}`}
+      className={`${darkMode ? "text-yellow-400" : "text-main-title-light"}`}
       onClick={handleThemeToggle}
     />
   );

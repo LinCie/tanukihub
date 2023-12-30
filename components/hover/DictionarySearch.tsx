@@ -73,13 +73,13 @@ export default function DictionarySearch({
   return (
     <Popover.Root onOpenChange={handleOpenChange}>
       <Popover.Trigger data-test="dictionary-popover" asChild>
-        <span className="relative cursor-help underline decoration-[#CC3E3E] decoration-dotted dark:decoration-white">
+        <span className="decoration-main-identity dark:decoration-main-light relative cursor-help underline decoration-dotted">
           {children}
         </span>
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content
-          className="z-[101] max-w-xs select-none truncate rounded-md bg-[#CC3E3E] px-3 py-2 text-base text-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] hover:whitespace-normal focus:outline-none data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
+          className="bg-main-identity text-main-light z-[101] max-w-xs select-none truncate rounded-md px-3 py-2 text-base shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] hover:whitespace-normal focus:outline-none data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
           sideOffset={5}
           side="top"
         >
@@ -88,7 +88,7 @@ export default function DictionarySearch({
           ) : (
             <Spinner className="h-5 w-5" />
           )}
-          <Popover.Arrow className="fill-[#CC3E3E] dark:fill-gray-700" />
+          <Popover.Arrow className="fill-main-identity dark:fill-gray-700" />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>

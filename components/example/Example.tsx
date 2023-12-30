@@ -11,7 +11,7 @@ export default function Example({ examples, className, ...props }: Props) {
   const customClass = className ? className : "";
   return (
     <div className={`mb-2 ${customClass}`.trim()} {...props}>
-      <h3 className="mb-2 text-sm font-bold text-black dark:text-white sm:text-base">
+      <h3 className="text-main-title-dark dark:text-main-title-light mb-2 text-sm font-bold sm:text-base">
         Examples
       </h3>
       <List type="decimal" position="outside" className="mx-7">

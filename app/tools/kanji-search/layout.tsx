@@ -113,7 +113,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
         id="search-radio"
         className="mb-2 flex flex-col gap-2 sm:flex-row sm:gap-3"
       >
-        <div className="flex gap-2">
+        <div className="text-main-title-dark dark:text-main-title-light flex gap-2">
           <div className="font-bold">Search In: </div>
           <Controller
             name="lang"
@@ -131,12 +131,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
               >
                 <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    className="border-main-identity dark:border-main-title-light h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] bg-transparent hover:bg-[#cc3e3e4b] dark:hover:bg-gray-800"
                     id="lang1"
                     value="en"
                     data-test="en-check"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="after:bg-main-identity relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:content-[''] dark:after:bg-white" />
                   </RadioItem>
                   <label
                     className="cursor-pointer pl-2 text-base leading-none"
@@ -147,12 +147,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
                 </div>
                 <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    className="border-main-identity dark:border-main-title-light h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] bg-transparent hover:bg-[#cc3e3e4b] dark:hover:bg-gray-800"
                     id="lang2"
                     value="jp"
                     data-test="jp-check"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="after:bg-main-identity relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:content-[''] dark:after:bg-white" />
                   </RadioItem>
                   <label
                     className="cursor-pointer pl-2 text-base leading-none"
@@ -184,12 +184,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
               >
                 <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    className="border-main-identity dark:border-main-title-light h-[18px] w-[18px] cursor-pointer border-[2px] bg-transparent hover:bg-[#cc3e3e4b] dark:hover:bg-gray-800"
                     id="by1"
                     value="kanji"
                     data-test="kanji-check"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="after:bg-main-identity relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:content-[''] dark:after:bg-white" />
                   </RadioItem>
                   <label
                     className="cursor-pointer pl-2 text-base leading-none"
@@ -200,12 +200,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
                 </div>
                 <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[18px] w-[18px] cursor-pointer border-[2px] border-[#CC3E3E] bg-transparent hover:bg-[#cc3e3e4b] dark:border-white dark:hover:bg-gray-800"
+                    className="border-main-identity dark:border-main-title-light h-[18px] w-[18px] cursor-pointer border-[2px] bg-transparent hover:bg-[#cc3e3e4b] dark:hover:bg-gray-800"
                     id="by2"
                     value="kana"
                     data-test="kana-check"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-[#CC3E3E] after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="after:bg-main-identity relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:content-[''] dark:after:bg-white" />
                   </RadioItem>
                   <label
                     className="cursor-pointer pl-2 text-base leading-none"
@@ -221,7 +221,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
       </div>
       <div
         id="search-text"
-        className="mb-4 flex rounded-md border-2 border-[#CC3E3E] dark:border-white"
+        className="border-main-identity dark:border-main-title-light mb-4 flex rounded-md border-2"
       >
         <input
           {...register("search", { required: true })}
@@ -296,7 +296,7 @@ export default function KanjiSearch({
           <Link
             href="https://www.edrdg.org/wiki/index.php/KANJIDIC_Project"
             target="_blank"
-            className="font-bold text-[#CC3E3E] hover:underline dark:text-white"
+            className="text-main-identity dark:text-main-title-light font-bold hover:underline"
           >
             Kanjidic
           </Link>{" "}
@@ -304,7 +304,7 @@ export default function KanjiSearch({
           <Link
             href="https://github.com/scriptin/jmdict-simplified"
             target="_blank"
-            className="font-bold text-[#CC3E3E] hover:underline dark:text-white"
+            className="text-main-identity dark:text-main-title-light font-bold hover:underline"
           >
             Simplified
           </Link>
