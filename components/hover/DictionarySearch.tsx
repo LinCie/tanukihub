@@ -17,12 +17,14 @@ interface ResponseData {
 
 interface DictionarySearchProps {
   children?: ReactNode;
-  searchFor?: string;
+  searchFor: string;
+  english?: boolean;
 }
 
 export default function DictionarySearch({
   children,
   searchFor,
+  english,
 }: DictionarySearchProps) {
   const [meanings, setMeanings] = useState<string[]>([]);
 
@@ -30,8 +32,8 @@ export default function DictionarySearch({
     try {
       // Paramater used for the GET request
       const params = {
-        search: searchFor,
-        lang: "jp",
+        search: encodeURIComponent(searchFor),
+        lang: english ? "en" : "jp",
       };
 
       const response = await instance.get("/dictionary", { params: params });
@@ -41,8 +43,12 @@ export default function DictionarySearch({
         // Create a temp string array to store the meanings
         const newMeanings: string[] = [];
         // Get all the meanings and push it into new meannings
-        data.words[0].sense.forEach((sense) => {
-          sense.gloss.forEach((gloss) => newMeanings.push(gloss.text));
+        data.words.forEach((word) => {
+          word.sense.forEach((sense) => {
+            sense.gloss.forEach((gloss) => {
+              newMeanings.push(gloss.text);
+            });
+          });
         });
         // Set the newmeanings into meanings
         setMeanings(newMeanings);

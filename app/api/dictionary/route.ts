@@ -25,7 +25,9 @@ export async function GET(req: Request) {
     const requestUrl = new URL(req.url);
     const params = requestUrl.searchParams;
 
-    const search: string | undefined = params.get("search")?.toLowerCase();
+    const search = decodeURIComponent(
+      params.get("search")?.toLowerCase() || "",
+    );
 
     // Returns a bad request error if user doesn't provide search parameter
     if (!search) {

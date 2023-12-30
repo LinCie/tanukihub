@@ -5,9 +5,31 @@ import Japanese from "@/components/typography/Japanese";
 import PageTitle from "@/components/typography/PageTitle";
 import Paragraph from "@/components/typography/Paragraph";
 import SectionTitle from "@/components/typography/SectionTitle";
+import Vocabulary from "@/components/vocabulary/Vocabulary";
+import VocabularyType from "@/components/vocabulary/VocabularyType";
 
 const NonPastTenseSection = () => {
-  const vocabulary = [];
+  const vocabularies: VocabularyType[] = [
+    {
+      kanji: "学生",
+      searchFor: "学生",
+      reading: "がくせい",
+      meaning: "Student",
+    },
+    {
+      kanji: "本",
+      searchFor: "counter for telephone calls",
+      reading: "ほん",
+      meaning: "Book",
+      english: true,
+    },
+    {
+      kanji: "犬",
+      searchFor: "犬",
+      reading: "いぬ",
+      meaning: "Dog",
+    },
+  ];
 
   const example = [];
 
@@ -39,10 +61,12 @@ const NonPastTenseSection = () => {
       <KeyPoint>
         <KeyPointText>
           Similar to Non Past Tense, if you want to declare something as a
-          negation (declaring something that is not), you can attach "ではない"
-          in informal situations, and "ではありません" in formal situations.
+          negation (declaring something that is not), you can attach "
+          <Japanese>ではない</Japanese>" in informal situations, and "
+          <Japanese>ではありません</Japanese>" in formal situations.
         </KeyPointText>
       </KeyPoint>
+      <Vocabulary vocabularies={vocabularies} />
     </section>
   );
 };
