@@ -8,12 +8,12 @@ interface Props {
 
 export default function ExampleContent({ example }: Props) {
   return (
-    <ListContent>
-      <div className="mb-2 flex flex-col text-base sm:text-lg">
+    <ListContent className="text-sm sm:text-base">
+      <div className="mb-2 flex flex-col">
         <div className="font-medium">
           <Japanese>{example.kana}</Japanese>
         </div>
-        <div className="text-main-dark/75 dark:text-main-light/75 text-sm italic sm:text-base">
+        <div className="text-main-dark/75 dark:text-main-light/75">
           {example.romaji}
         </div>
         <div className="mt-2 font-medium">{example.translation}</div>

@@ -10,7 +10,7 @@ interface Props {
 export default function VocabularyContent({ vocabulary }: Props) {
   return (
     <ListContent>
-      <div className="text-main-dark dark:text-main-light flex gap-2 text-lg">
+      <div className="flex gap-2 text-sm text-main-dark dark:text-main-light sm:text-base">
         <div className="font-medium">
           <DictionarySearch
             searchFor={vocabulary.searchFor}
