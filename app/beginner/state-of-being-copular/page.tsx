@@ -1,3 +1,5 @@
+import Example from "@/components/example/Example";
+import ExampleType from "@/components/example/ExampleType";
 import KeyPoint from "@/components/keypoint/KeyPoint";
 import KeyPointText from "@/components/keypoint/KeyPointText";
 import Bold from "@/components/typography/Bold";
@@ -31,7 +33,23 @@ const NonPastTenseSection = () => {
     },
   ];
 
-  const example = [];
+  const examples: ExampleType[] = [
+    {
+      kana: "本だ",
+      romaji: "Hon da",
+      translation: "(It's) a book",
+    },
+    {
+      kana: "犬です",
+      romaji: "Inu desu",
+      translation: "(It's) a dog",
+    },
+    {
+      kana: "学生です",
+      romaji: "Gakusei desu",
+      translation: "(I'm) a student",
+    },
+  ];
 
   return (
     <section id="non-past-tense">
@@ -67,6 +85,7 @@ const NonPastTenseSection = () => {
         </KeyPointText>
       </KeyPoint>
       <Vocabulary vocabularies={vocabularies} />
+      <Example examples={examples} />
     </section>
   );
 };
