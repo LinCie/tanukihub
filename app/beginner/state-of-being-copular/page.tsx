@@ -4,6 +4,8 @@ import WrittenExercise from "@/components/exercise/WrittenExercise";
 import WrittenExerciseType from "@/components/exercise/WrittenExerciseType";
 import KeyPoint from "@/components/keypoint/KeyPoint";
 import KeyPointText from "@/components/keypoint/KeyPointText";
+import BottomNavigation from "@/components/navigation/BottomNavigation";
+import BottomNavigationLink from "@/components/navigation/BottomNavigationLink";
 import Bold from "@/components/typography/Bold";
 import Japanese from "@/components/typography/Japanese";
 import PageTitle from "@/components/typography/PageTitle";
@@ -241,6 +243,14 @@ export default function Page() {
       <PastTenseSection />
       <NegativePastTenseSection />
       <WrittenExerciseSection />
+      <BottomNavigation>
+        <BottomNavigationLink href="/introductory/intro-to-katakana">
+          Intro to Katakana
+        </BottomNavigationLink>
+        <BottomNavigationLink right href="/beginner/the-particle-ga">
+          The Particle「が」
+        </BottomNavigationLink>
+      </BottomNavigation>
     </div>
   );
 }
