@@ -1,5 +1,7 @@
 import Example from "@/components/example/Example";
 import ExampleType from "@/components/example/ExampleType";
+import WrittenExercise from "@/components/exercise/WrittenExercise";
+import WrittenExerciseType from "@/components/exercise/WrittenExerciseType";
 import KeyPoint from "@/components/keypoint/KeyPoint";
 import KeyPointText from "@/components/keypoint/KeyPointText";
 import Bold from "@/components/typography/Bold";
@@ -198,6 +200,38 @@ const NegativePastTenseSection = () => {
   );
 };
 
+const WrittenExerciseSection = () => {
+  const exercises: WrittenExerciseType[] = [
+    {
+      question: "(It's) a dog.",
+      answer: "犬だ / 犬です",
+    },
+    {
+      question: "(I) was a teacher.",
+      answer: "先生だった / 先生でした",
+    },
+    {
+      question: "(I'm) healthy / fine.",
+      answer: "元気だ / 元気です",
+    },
+    {
+      question: "(It's) not an animal.",
+      answer: "動物ではない / 動物ではありません",
+    },
+    {
+      question: "(It) wasn't a book.",
+      answer: "本ではなかった / 本ではありませんでした",
+    },
+  ];
+
+  return (
+    <section id="written-exercise">
+      <SectionTitle>Written Exercise</SectionTitle>
+      <WrittenExercise exercises={exercises}></WrittenExercise>
+    </section>
+  );
+};
+
 export default function Page() {
   return (
     <div id="state-of-being-copular">
@@ -206,6 +240,7 @@ export default function Page() {
       <NegativeNonPastTenseSection />
       <PastTenseSection />
       <NegativePastTenseSection />
+      <WrittenExerciseSection />
     </div>
   );
 }
