@@ -9,7 +9,7 @@ const KeyPointText = ({ children, className, ...props }: Props) => {
 
   return (
     <p
-      className={`text-main-dark dark:text-main-light mb-2 text-sm last-of-type:mb-0 sm:mb-3 sm:text-base last-of-type:sm:mb-0 ${customClass}`.trim()}
+      className={`mb-1 text-sm text-main-dark last-of-type:mb-0 dark:text-main-light sm:mb-2 sm:text-base last-of-type:sm:mb-0 ${customClass}`.trim()}
       {...props}
     >
       {children}

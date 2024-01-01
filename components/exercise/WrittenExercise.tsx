@@ -26,8 +26,8 @@ export default function WrittenExercise({
   };
 
   return (
-    <div className={`mb-2 ${customClass}`.trim()} {...props}>
-      <div className="mb-2 text-sm sm:text-base">
+    <div className={`mb-2 sm:mb-3 ${customClass}`.trim()} {...props}>
+      <div className="mb-2 text-sm sm:mb-3 sm:text-base">
         Note: You're encouraged to use dictionaries such as{" "}
         <Link
           href="https://jisho.org/"
