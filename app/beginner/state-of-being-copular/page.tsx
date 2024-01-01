@@ -89,11 +89,123 @@ const NonPastTenseSection = () => {
   );
 };
 
+const NegativeNonPastTenseSection = () => {
+  const examples: ExampleType[] = [
+    {
+      kana: "犬でわない",
+      romaji: "Inu dewanai",
+      translation: "(It's) not a dog",
+    },
+    {
+      kana: "学生ではありません",
+      romaji: "Gakusei dewaarimasen",
+      translation: "(I'm) not a student",
+    },
+  ];
+
+  return (
+    <section id="negative-non-past-tense">
+      <SectionTitle>Copular Sentences: Negative Non Past Tense</SectionTitle>
+      <Paragraph>
+        Much like in English, you can transform copular sentences into negative
+        forms to express the negation of a statement. To do this, you simply
+        need to change the copula into its negative form. In informal speech,
+        the plain form of the copula is "<Japanese>だ</Japanese>". To express
+        the negative non past tense in informal language, you can replace "
+        <Japanese>だ</Japanese>" with "<Japanese>ではない</Japanese>". In formal
+        situtation, the copula "<Japanese>です</Japanese>" can be replaced with
+        "<Japanese>ではありません</Japanese>".
+      </Paragraph>
+      <KeyPoint>
+        <KeyPointText>
+          Similar to Non Past Tense, if you want to declare something as a
+          negation (declaring something that is not), you can attach "
+          <Japanese>ではない</Japanese>" in informal situations, and "
+          <Japanese>ではありません</Japanese>" in formal situations.
+        </KeyPointText>
+      </KeyPoint>
+      <Example examples={examples} />
+    </section>
+  );
+};
+
+const PastTenseSection = () => {
+  const vocabularies: VocabularyType[] = [
+    {
+      kanji: "元気",
+      searchFor: "元気",
+      reading: "げんき",
+      meaning: "Healthy",
+    },
+  ];
+
+  const examples: ExampleType[] = [
+    {
+      kana: "元気だった",
+      romaji: "Genki datta",
+      translation: "(I) was healthy",
+    },
+    {
+      kana: "学生でした",
+      romaji: "Gakusei deshita",
+      translation: "(I) was a student",
+    },
+  ];
+
+  return (
+    <section id="past-tense">
+      <SectionTitle>Copular Sentences: Past Tense</SectionTitle>
+      <Paragraph>
+        In Japanese, the copular past tense is used to express past states or
+        actions using the copula. As you have learned, there are 2 non past
+        copulars, "<Japanese>だ</Japanese>" and "<Japanese>です</Japanese>". In
+        order to use it to express past states, you'll have to transform it into
+        "<Japanese>だった</Japanese>" and "<Japanese>でした</Japanese>"
+        respectively.
+      </Paragraph>
+      <Vocabulary vocabularies={vocabularies} />
+      <Example examples={examples} />
+    </section>
+  );
+};
+
+const NegativePastTenseSection = () => {
+  const examples: ExampleType[] = [
+    {
+      kana: "犬ではなかった",
+      romaji: "Inu dewanakatta",
+      translation: "(It) wasn't a dog",
+    },
+    {
+      kana: "学生ではありませんでした",
+      romaji: "Gakusei dewaarimasendeshita",
+      translation: "(I) wasn't a student",
+    },
+  ];
+
+  return (
+    <section id="negative-past-tense">
+      <SectionTitle>Copular Sentences: Negative Past Tense</SectionTitle>
+      <Paragraph>
+        Similar to negative non past tense, the negative copular past tense is
+        used to describe past states or conditions that were not true or actions
+        that did not happen in the past. It involves attaching "
+        <Japanese>ではなかった</Japanese>" for informal situations, or "
+        <Japanese>ではありませんでした</Japanese>" for formal situations.
+      </Paragraph>
+      <Example examples={examples} />
+    </section>
+  );
+};
+
 export default function Page() {
   return (
     <div id="state-of-being-copular">
       <PageTitle>State-of-Being: Copular Sentence</PageTitle>
       <NonPastTenseSection />
+      <NegativeNonPastTenseSection />
+      <PastTenseSection />
+      <NegativePastTenseSection />
     </div>
   );
 }
