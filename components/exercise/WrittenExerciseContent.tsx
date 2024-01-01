@@ -1,15 +1,23 @@
 import WrittenExerciseType from "@/components/exercise/WrittenExerciseType";
 import ListContent from "@/components/list/ListContent";
 import Japanese from "@/components/typography/Japanese";
+import { ComponentPropsWithoutRef } from "react";
 
-interface Props {
+interface Props extends ComponentPropsWithoutRef<"li"> {
   revealed: boolean;
   exercise: WrittenExerciseType;
 }
 
-export default function WrittenExerciseContent({ exercise, revealed }: Props) {
+export default function WrittenExerciseContent({
+  exercise,
+  revealed,
+  ...props
+}: Props) {
   return (
-    <ListContent className="mb-2 text-sm last-of-type:mb-3 sm:mb-3 sm:text-base last-of-type:sm:mb-4">
+    <ListContent
+      className="mb-2 text-sm last-of-type:mb-3 sm:mb-3 sm:text-base last-of-type:sm:mb-4"
+      {...props}
+    >
       <div className="flex flex-col gap-0 border-b-2 border-none border-main-identity dark:border-main-title-light sm:flex-row sm:items-center sm:gap-2 sm:border-solid sm:p-1">
         <div className="sm:flex-1">{exercise.question}</div>
         <div className="hidden sm:block">=</div>
