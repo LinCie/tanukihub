@@ -72,14 +72,15 @@ export default function DictionarySearch({
 
   return (
     <Popover.Root onOpenChange={handleOpenChange}>
-      <Popover.Trigger data-test="dictionary-popover" asChild>
-        <span className="decoration-main-identity dark:decoration-main-light relative cursor-help underline decoration-dotted">
-          {children}
-        </span>
+      <Popover.Trigger
+        data-test="dictionary-popover"
+        className="relative cursor-help underline decoration-main-identity decoration-dotted dark:decoration-main-light"
+      >
+        {children}
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content
-          className="bg-main-identity text-main-light z-[101] max-w-xs select-none truncate rounded-md px-3 py-2 text-base shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] hover:whitespace-normal focus:outline-none data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
+          className="z-[101] max-w-xs select-none truncate rounded-md bg-main-identity px-3 py-2 text-base text-main-light shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] hover:whitespace-normal focus:outline-none data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
           sideOffset={5}
           side="top"
         >
