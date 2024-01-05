@@ -1,7 +1,7 @@
 describe("Layout Testing", () => {
   // Visit kanji-search link
   beforeEach(() => {
-    cy.visit("tools/kanji-search");
+    cy.visit("/tools/kanji-search");
   });
 
   describe("Sidebar", () => {
