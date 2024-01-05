@@ -180,9 +180,16 @@ const SubjectMarkerSection = () => {
           <DictionarySearch searchFor="味">味</DictionarySearch>が
           <DictionarySearch searchFor="甘い">甘い</DictionarySearch>
         </Japanese>
-        " (aji ga amai ~ the taste is sweet), "味" (aji) indicates the subject,
-        and "甘い" indicates the description of the subject. In this case, the
-        taste is described as sweet tasting.
+        " (aji ga amai ~ the taste is sweet), "
+        <Japanese>
+          <DictionarySearch searchFor="味">味</DictionarySearch>
+        </Japanese>
+        " (aji) indicates the subject, and "
+        <Japanese>
+          <DictionarySearch searchFor="甘い">甘い</DictionarySearch>
+        </Japanese>
+        " indicates the description of the subject. In this case, the taste is
+        described as sweet tasting.
       </Paragraph>
       <Vocabulary vocabularies={vocabularies} />
       <Example examples={examples} />
