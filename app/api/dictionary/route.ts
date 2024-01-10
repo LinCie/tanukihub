@@ -18,6 +18,10 @@ class Words {
   get(endIndex: number): Word[] {
     return [...this.words].slice(0, endIndex);
   }
+
+  length(): number {
+    return this.words.length;
+  }
 }
 
 export async function GET(req: Request) {
@@ -39,7 +43,7 @@ export async function GET(req: Request) {
 
     const words = new Words();
 
-    const language: string | undefined = params.get("lang")?.toLowerCase();
+    const language = params.get("lang")?.toLowerCase();
 
     // Do this if the user search by using english
     if (language === "en") {
@@ -86,10 +90,10 @@ export async function GET(req: Request) {
       );
     }
 
-    if (words) {
-      return NextResponse.json({ words: words.words }, { status: 200 });
+    if (words.length() === 0) {
+      return NextResponse.json({ message: "Word not found" }, { status: 404 });
     } else {
-      return NextResponse.json({ message: "Word not found" }, { status: 400 });
+      return NextResponse.json({ words: words.words }, { status: 200 });
     }
   } catch (err) {
     return NextResponse.json(
