@@ -55,11 +55,11 @@ const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
         data-test="character-display"
         className="group relative flex h-40 w-40 cursor-pointer select-none flex-col items-center justify-center transition-opacity active:opacity-75"
       >
-        <div className="text-main-title-dark dark:text-main-title-light group-hover:text-main-identity mb-2 text-7xl font-medium transition-all duration-75 ease-in-out group-active:scale-95">
+        <div className="mb-2 text-7xl font-medium text-main-title-dark transition-all duration-75 ease-in-out group-hover:text-main-identity group-active:scale-95 dark:text-main-title-light">
           <Japanese>{character.literal}</Japanese>
         </div>
         <div className="w-full truncate text-center">{meanings.join(", ")}</div>
-        <div className="hover:text-main-identity absolute bottom-1 right-1 opacity-0 transition-opacity duration-75 ease-in-out hover:underline group-hover:opacity-100">
+        <div className="absolute bottom-1 right-1 opacity-0 transition-opacity duration-75 ease-in-out hover:text-main-identity hover:underline group-hover:opacity-100">
           View
         </div>
       </Link>

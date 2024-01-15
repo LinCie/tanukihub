@@ -33,7 +33,7 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
           <div
             data-test="kanji-information"
             id="kanji-character-text"
-            className="text-main-title-dark dark:text-main-title-light select-none text-9xl"
+            className="select-none text-9xl text-main-title-dark dark:text-main-title-light"
           >
             <Japanese>{character.literal}</Japanese>
           </div>
@@ -71,7 +71,7 @@ const ReadingDisplay = ({ character }: ReadingDisplayProps) => {
 
   return (
     <div id="reading-display" className="mb-5 flex flex-1 flex-col">
-      <h2 className="text-main-title-dark dark:text-main-title-light mb-2 text-lg font-bold">
+      <h2 className="mb-2 text-lg font-bold text-main-title-dark dark:text-main-title-light">
         Readings
       </h2>
       <div id="kunyomi-display" className="mb-1 flex gap-2">
@@ -107,7 +107,7 @@ const MiscDisplay = ({ character }: MiscDisplayProps) => {
 
   return (
     <div id="misc-display" className="flex-1">
-      <h2 className="text-main-title-dark dark:text-main-title-light mb-2 text-lg font-bold">
+      <h2 className="mb-2 text-lg font-bold text-main-title-dark dark:text-main-title-light">
         Miscellaneous
       </h2>
       {grade && (
@@ -228,7 +228,7 @@ export default function Page({ params }: { params: { kanji: string } }) {
 
   useEffect(() => {
     fetchCharacter();
-  }, []);
+  });
 
   if (!character) {
     return <CharacterDisplayLoading />;

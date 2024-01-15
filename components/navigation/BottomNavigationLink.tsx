@@ -27,14 +27,12 @@ export default function BottomNavigationLink({
     <Link
       href={href}
       id={right ? "navigation-next" : "navigation-previous"}
-      className={`text-main-identity dark:text-main-title-light flex items-center justify-between gap-2 text-xs font-medium hover:underline sm:text-sm ${
+      className={`flex items-center justify-between gap-2 text-xs font-medium text-main-identity hover:underline dark:text-main-title-light sm:text-sm ${
         right ? "flex-row" : "flex-row-reverse"
       } ${customClass}`.trim()}
       {...props}
     >
-      <div className="max-w-[150px] overflow-clip sm:max-w-[500px]">
-        {children}
-      </div>
+      <div className="max-w-[150px] text-clip sm:max-w-[500px]">{children}</div>
       {right ? (
         <ArrowRightIcon
           data-test="right-arrow"

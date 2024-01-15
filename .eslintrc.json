@@ -1,7 +1,24 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "plugin:tailwindcss/recommended"
+  ],
   "rules": {
     "react/no-unescaped-entities": "off",
-    "@next/next/no-page-custom-font": "off"
-  }
+    "@next/next/no-page-custom-font": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "tailwindcss/no-custom-classname": [
+      "error",
+      {
+        "whitelist": ["test"]
+      }
+    ]
+  },
+  "plugins": ["tailwindcss"]
 }

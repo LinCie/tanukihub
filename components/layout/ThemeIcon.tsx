@@ -22,7 +22,7 @@ const ThemeIcon = () => {
     if (theme === "dark") {
       setDarkMode(true);
     }
-  }, []);
+  }, [theme]);
 
   if (!mounted) {
     return <IconButton icon={<MoonIcon />} className="text-main-title-light" />;
@@ -41,7 +41,7 @@ const ThemeIcon = () => {
   return (
     <IconButton
       icon={<MoonIcon aria-label="Toggle Darkmode" />}
-      className={`${darkMode ? "text-yellow-400" : "text-main-title-light"}`}
+      className="text-main-title-light dark:text-yellow-400"
       onClick={handleThemeToggle}
     />
   );

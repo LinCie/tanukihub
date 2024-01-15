@@ -25,7 +25,7 @@ export default function PageLoading() {
         <Link
           href="https://www.pixiv.net/en/artworks/113407888"
           target="_blank"
-          className="text-main-identity dark:text-main-title-light font-medium hover:underline"
+          className="font-medium text-main-identity hover:underline dark:text-main-title-light"
         >
           Art
         </Link>
@@ -33,7 +33,7 @@ export default function PageLoading() {
         <Link
           href="https://www.pixiv.net/en/users/13926723"
           target="_blank"
-          className="text-main-identity dark:text-main-title-light font-medium hover:underline"
+          className="font-medium text-main-identity hover:underline dark:text-main-title-light"
         >
           <Japanese>杏仁レモンティー</Japanese>
         </Link>

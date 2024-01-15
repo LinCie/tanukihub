@@ -20,9 +20,7 @@ describe("<DictionarySearch />", () => {
     });
 
     it("tooltip closes", () => {
-      cy.get("@component")
-        .click()
-        .should("have.data", "state", "closed");
+      cy.get("@component").click().should("have.data", "state", "closed");
     });
   });
 });

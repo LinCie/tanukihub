@@ -27,7 +27,7 @@ const WritingSystemSection = () => {
         the language.
       </Paragraph>
       <List type="disc" position="outside" className="mx-5">
-        <ListContent className="text-main-dark dark:text-main-light mb-1 text-sm last-of-type:mb-2 sm:text-base last-of-type:sm:mb-3">
+        <ListContent className="mb-1 text-sm text-main-dark last-of-type:mb-2 dark:text-main-light sm:text-base last-of-type:sm:mb-3">
           <Bold>
             Hiragana (
             <Japanese>
@@ -43,7 +43,7 @@ const WritingSystemSection = () => {
           </Japanese>{" "}
           is written in Hiragana
         </ListContent>
-        <ListContent className="text-main-dark dark:text-main-light mb-1 text-sm last-of-type:mb-2 sm:text-base last-of-type:sm:mb-3">
+        <ListContent className="mb-1 text-sm text-main-dark last-of-type:mb-2 dark:text-main-light sm:text-base last-of-type:sm:mb-3">
           <Bold>
             Katakana (
             <Japanese>
@@ -60,7 +60,7 @@ const WritingSystemSection = () => {
           native Japanese words like "to eat" in Katakana, it might be used for
           emphasis or in specific contexts.
         </ListContent>
-        <ListContent className="text-main-dark dark:text-main-light mb-1 text-sm last-of-type:mb-2 sm:text-base last-of-type:sm:mb-3">
+        <ListContent className="mb-1 text-sm text-main-dark last-of-type:mb-2 dark:text-main-light sm:text-base last-of-type:sm:mb-3">
           <Bold>
             Kanji (
             <Japanese>

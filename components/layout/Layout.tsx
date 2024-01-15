@@ -109,21 +109,21 @@ const Layout = () => {
   return (
     <>
       {/* Header section */}
-      <header className="bg-main-identity fixed left-0 right-0 top-0 z-[100] flex h-14 flex-row items-center justify-between px-2 shadow-md dark:bg-gray-700 md:h-16">
+      <header className="fixed inset-x-0 top-0 z-[100] flex h-14 flex-row items-center justify-between bg-main-identity px-2 shadow-md dark:bg-gray-700 md:h-16">
         <div id="header-left-side" className="flex items-center gap-2">
           <div className="relative block md:hidden">
             <AnimatedSidebarToggle
               style={hamburgerSprings}
               icon={<HamburgerMenuIcon />}
               onClick={handleSidebarOpen}
-              className="text-main-title-light relative"
+              className="relative text-main-title-light"
               aria-label="Toggle Sidebar Open"
             />
             <AnimatedSidebarToggle
               style={crossSprings}
               icon={<Cross1Icon />}
               onClick={handleSidebarOpen}
-              className="text-main-title-light absolute left-0 top-0"
+              className="absolute left-0 top-0 text-main-title-light"
               aria-label="Toggle Sidebar Close"
             />
           </div>
@@ -139,7 +139,7 @@ const Layout = () => {
               height={500}
               className="h-8 w-8"
             />
-            <div className="text-main-title-light text-xl font-medium">
+            <div className="text-xl font-medium text-main-title-light">
               TanukiHub
             </div>
           </Link>
@@ -162,7 +162,7 @@ const Layout = () => {
       {/* Sidebar section */}
       <animated.nav
         style={sidebarSprings}
-        className={`fixed bottom-0 left-0 top-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16 ${
+        className={`fixed inset-y-0 left-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16 ${
           sidebarOpen ? "md:left-0" : "md:left-[300px]"
         }`}
         aria-live="polite"
