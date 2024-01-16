@@ -162,7 +162,8 @@ const Layout = () => {
       {/* Sidebar section */}
       <animated.nav
         style={sidebarSprings}
-        className={`fixed inset-y-0 left-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16${
+        // eslint-disable-next-line tailwindcss/enforces-shorthand
+        className={`fixed inset-y-0 left-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16 ${
           sidebarOpen ? "md:left-0" : "md:left-[300px]"
         }`}
         aria-live="polite"
