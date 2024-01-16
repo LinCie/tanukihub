@@ -29,7 +29,7 @@ const KanjIDisplay = ({ character }: KanjIDisplayProps) => {
   return (
     <div className="mb-5 lg:flex-[3]">
       <div id="kanji-character" className="mb-4 flex justify-center">
-        <div id="kanji-character-container" className="h-32 w-32">
+        <div id="kanji-character-container" className="size-32">
           <div
             data-test="kanji-information"
             id="kanji-character-text"

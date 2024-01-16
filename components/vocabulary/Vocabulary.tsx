@@ -20,7 +20,7 @@ export default function Vocabulary({
     <div className={`mb-2 sm:mb-3 ${customClass}`.trim()} {...props}>
       <h3 className="mb-2 flex items-center gap-1 text-sm font-bold text-main-title-dark dark:text-main-title-light sm:mb-3 sm:gap-2 sm:text-base">
         <div>
-          <InfoCircledIcon className="h-4 w-4 text-main-title-dark dark:text-main-title-light sm:h-5 sm:w-5" />
+          <InfoCircledIcon className="size-4 text-main-title-dark dark:text-main-title-light sm:size-5" />
         </div>
         <div>Vocabulary</div>
       </h3>

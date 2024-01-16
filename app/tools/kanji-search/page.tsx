@@ -21,7 +21,7 @@ const CharacterDisplayLoading = () => {
       {[...Array(5)].map((x, i) => (
         <div
           key={`loading ${i}`}
-          className="mb-4 h-40 w-40 animate-pulse bg-gray-200 dark:bg-gray-900"
+          className="mb-4 size-40 animate-pulse bg-gray-200 dark:bg-gray-900"
         />
       ))}
     </>
@@ -53,7 +53,7 @@ const CharacterDisplay = ({ character }: CharacterDisplayProps) => {
       <Link
         href={`/tools/kanji-search/${character.literal}`}
         data-test="character-display"
-        className="group relative flex h-40 w-40 cursor-pointer select-none flex-col items-center justify-center transition-opacity active:opacity-75"
+        className="group relative flex size-40 cursor-pointer select-none flex-col items-center justify-center transition-opacity active:opacity-75"
       >
         <div className="mb-2 text-7xl font-medium text-main-title-dark transition-all duration-75 ease-in-out group-hover:text-main-identity group-active:scale-95 dark:text-main-title-light">
           <Japanese>{character.literal}</Japanese>

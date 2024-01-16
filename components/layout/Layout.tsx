@@ -137,7 +137,7 @@ const Layout = () => {
               alt="TanukiHub Logo"
               width={500}
               height={500}
-              className="h-8 w-8"
+              className="size-8"
             />
             <div className="text-xl font-medium text-main-title-light">
               TanukiHub
@@ -162,7 +162,7 @@ const Layout = () => {
       {/* Sidebar section */}
       <animated.nav
         style={sidebarSprings}
-        className={`fixed inset-y-0 left-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16 ${
+        className={`fixed inset-y-0 left-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16${
           sidebarOpen ? "md:left-0" : "md:left-[300px]"
         }`}
         aria-live="polite"
@@ -174,6 +174,7 @@ const Layout = () => {
       </animated.nav>
       {/* Sidebar Overlay */}
       <animated.div
+        // eslint-disable-next-line tailwindcss/enforces-shorthand
         className={`
           fixed z-[98] h-screen w-screen overflow-auto bg-black md:hidden ${
             sidebarOpen ? "block" : "hidden"

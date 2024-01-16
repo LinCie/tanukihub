@@ -7,15 +7,15 @@ import Spinner from "@/components/loading/Spinner";
 
 export default function PageLoading() {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center">
+    <div className="flex size-full flex-col items-center justify-center">
       <div className="flex items-center gap-8">
         <Japanese className="select-none text-2xl font-medium md:text-3xl">
           ちょっと待ってね。。。
         </Japanese>
-        <Spinner className="h-6 w-6 md:h-8 md:w-8" />
+        <Spinner className="size-6 md:size-8" />
       </div>
       <Image
-        className="h-52 w-52 md:h-72 md:w-72"
+        className="size-52 md:size-72"
         src={mari}
         alt="Loading..."
         width={500}

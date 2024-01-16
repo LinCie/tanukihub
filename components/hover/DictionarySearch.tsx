@@ -87,7 +87,7 @@ export default function DictionarySearch({
           {meanings.length > 0 ? (
             meanings.join(", ")
           ) : (
-            <Spinner className="h-5 w-5" />
+            <Spinner className="size-5" />
           )}
           <Popover.Arrow className="fill-main-identity dark:fill-gray-700" />
         </Popover.Content>

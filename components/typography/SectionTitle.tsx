@@ -15,7 +15,7 @@ export default function SectionTitle({ children, className, ...props }: Props) {
       {...props}
     >
       <div>
-        <Component1Icon className="h-4 w-4 text-main-title-dark dark:text-main-title-light sm:h-5 sm:w-5" />
+        <Component1Icon className="size-4 text-main-title-dark dark:text-main-title-light sm:size-5" />
       </div>
       <div>{children}</div>
     </h2>

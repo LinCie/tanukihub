@@ -34,15 +34,9 @@ export default function BottomNavigationLink({
     >
       <div className="max-w-[150px] text-clip sm:max-w-[500px]">{children}</div>
       {right ? (
-        <ArrowRightIcon
-          data-test="right-arrow"
-          className="h-5 w-5 md:h-6 md:w-6"
-        />
+        <ArrowRightIcon data-test="right-arrow" className="size-5 md:size-6" />
       ) : (
-        <ArrowLeftIcon
-          data-test="left-arrow"
-          className="h-5 w-5 md:h-6 md:w-6"
-        />
+        <ArrowLeftIcon data-test="left-arrow" className="size-5 md:size-6" />
       )}
     </Link>
   );

@@ -15,7 +15,7 @@ const KeyPoint = ({ children, className, ...props }: Props) => {
     >
       <h3 className="mb-2 flex items-center gap-1 font-medium text-main-title-dark dark:text-main-title-light sm:mb-3 sm:gap-2">
         <div>
-          <InfoCircledIcon className="h-4 w-4 text-main-title-dark dark:text-main-title-light sm:h-5 sm:w-5" />
+          <InfoCircledIcon className="size-4 text-main-title-dark dark:text-main-title-light sm:size-5" />
         </div>
         <div>Key Points</div>
       </h3>

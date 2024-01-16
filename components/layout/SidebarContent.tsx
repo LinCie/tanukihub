@@ -28,7 +28,7 @@ const SidebarContent = () => {
             className="border-b-2 text-main-title-dark dark:border-b-gray-800 dark:text-main-title-light"
           >
             <Accordion.AccordionHeader>
-              <Accordion.AccordionTrigger className="AccordionTrigger flex h-full w-full items-center justify-between p-3 text-base">
+              <Accordion.AccordionTrigger className="AccordionTrigger flex size-full items-center justify-between p-3 text-base">
                 {page.level}
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.AccordionTrigger>

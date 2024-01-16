@@ -131,12 +131,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
               >
                 <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] border-main-identity bg-transparent hover:bg-[#cc3e3e4b] dark:border-main-title-light dark:hover:bg-gray-800"
+                    className="size-[25px] cursor-pointer rounded-full border-[2px] border-main-identity bg-transparent hover:bg-[#cc3e3e4b] dark:border-main-title-light dark:hover:bg-gray-800"
                     id="lang1"
                     value="en"
                     data-test="en-check"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-main-identity after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="relative flex size-full items-center justify-center after:block after:size-[11px] after:rounded-full after:bg-main-identity after:content-[''] dark:after:bg-white" />
                   </RadioItem>
                   <label
                     className="cursor-pointer pl-2 text-base leading-none"
@@ -147,12 +147,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
                 </div>
                 <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[25px] w-[25px] cursor-pointer rounded-full border-[2px] border-main-identity bg-transparent hover:bg-[#cc3e3e4b] dark:border-main-title-light dark:hover:bg-gray-800"
+                    className="size-[25px] cursor-pointer rounded-full border-[2px] border-main-identity bg-transparent hover:bg-[#cc3e3e4b] dark:border-main-title-light dark:hover:bg-gray-800"
                     id="lang2"
                     value="jp"
                     data-test="jp-check"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[11px] after:w-[11px] after:rounded-full after:bg-main-identity after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="relative flex size-full items-center justify-center after:block after:size-[11px] after:rounded-full after:bg-main-identity after:content-[''] dark:after:bg-white" />
                   </RadioItem>
                   <label
                     className="cursor-pointer pl-2 text-base leading-none"
@@ -184,12 +184,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
               >
                 <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[18px] w-[18px] cursor-pointer border-[2px] border-main-identity bg-transparent hover:bg-[#cc3e3e4b] dark:border-main-title-light dark:hover:bg-gray-800"
+                    className="size-[18px] cursor-pointer border-[2px] border-main-identity bg-transparent hover:bg-[#cc3e3e4b] dark:border-main-title-light dark:hover:bg-gray-800"
                     id="by1"
                     value="kanji"
                     data-test="kanji-check"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-main-identity after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="relative flex size-full items-center justify-center after:block after:size-[8px] after:bg-main-identity after:content-[''] dark:after:bg-white" />
                   </RadioItem>
                   <label
                     className="cursor-pointer pl-2 text-base leading-none"
@@ -200,12 +200,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
                 </div>
                 <div className="flex items-center justify-center">
                   <RadioItem
-                    className="h-[18px] w-[18px] cursor-pointer border-[2px] border-main-identity bg-transparent hover:bg-[#cc3e3e4b] dark:border-main-title-light dark:hover:bg-gray-800"
+                    className="size-[18px] cursor-pointer border-[2px] border-main-identity bg-transparent hover:bg-[#cc3e3e4b] dark:border-main-title-light dark:hover:bg-gray-800"
                     id="by2"
                     value="kana"
                     data-test="kana-check"
                   >
-                    <RadioGroup.Indicator className="relative flex h-full w-full items-center justify-center after:block after:h-[8px] after:w-[8px] after:bg-main-identity after:content-[''] dark:after:bg-white" />
+                    <RadioGroup.Indicator className="relative flex size-full items-center justify-center after:block after:size-[8px] after:bg-main-identity after:content-[''] dark:after:bg-white" />
                   </RadioItem>
                   <label
                     className="cursor-pointer pl-2 text-base leading-none"
@@ -235,7 +235,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
           data-test="submit"
           className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
         >
-          <MagnifyingGlassIcon className="h-5 w-5" />
+          <MagnifyingGlassIcon className="size-5" />
         </button>
       </div>
     </form>
