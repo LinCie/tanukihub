@@ -15,7 +15,7 @@ export const pages = [
         name: "Introduction to Katakana",
         link: "intro-to-katakana",
       },
-    ]
+    ],
   },
   {
     level: "Beginner",
@@ -28,32 +28,36 @@ export const pages = [
       {
         name: "The Particle「が」",
         link: "the-particle-ga",
-      }
-    ]
+      },
+      {
+        name: "The Particle「は」",
+        link: "the-particle-ha",
+      },
+    ],
   },
   {
     level: "Intermediate",
     root: "intermediate",
-    contents: []
+    contents: [],
   },
   {
     level: "Advanced",
     root: "advanced",
-    contents: []
+    contents: [],
   },
   {
     level: "Expert",
     root: "expert",
-    contents: []
+    contents: [],
   },
   {
     level: "Tools",
     root: "tools",
     contents: [
       {
-        name: "Kanji Search", 
+        name: "Kanji Search",
         link: "kanji-search",
-      }
-    ]
-  }
-]
+      },
+    ],
+  },
+];

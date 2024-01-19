@@ -240,8 +240,8 @@ export default function Page() {
         <BottomNavigationLink href="/beginner/state-of-being-copular">
           State-of-Being: Copular Sentence
         </BottomNavigationLink>
-        <BottomNavigationLink href="/" right>
-          Lorem Ipsum
+        <BottomNavigationLink href="/beginner/the-particle-ha" right>
+          The Particle 「は」
         </BottomNavigationLink>
       </BottomNavigation>
     </div>
