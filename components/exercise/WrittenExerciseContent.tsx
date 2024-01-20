@@ -1,7 +1,13 @@
+// React imports
+import { ComponentPropsWithoutRef } from "react";
+
+// Utility imports
+import { cn } from "@/lib/utils";
+
+// Component imports
 import WrittenExerciseType from "@/components/exercise/WrittenExerciseType";
 import ListContent from "@/components/list/ListContent";
 import Japanese from "@/components/typography/Japanese";
-import { ComponentPropsWithoutRef } from "react";
 
 interface Props extends ComponentPropsWithoutRef<"li"> {
   revealed: boolean;
@@ -18,13 +24,33 @@ export default function WrittenExerciseContent({
       className="mb-2 text-sm last-of-type:mb-3 sm:mb-3 sm:text-base last-of-type:sm:mb-4"
       {...props}
     >
-      <div className="flex flex-col gap-0 border-b-2 border-none border-main-identity dark:border-main-title-light sm:flex-row sm:items-center sm:gap-2 sm:border-solid sm:p-1">
+      <div
+        className={cn(
+          // Base styles
+          "flex flex-col gap-0 border-b-2 border-none border-main-identity dark:border-main-title-light",
+          // Small screen breakpoint
+          "sm:flex-row sm:items-center sm:gap-2 sm:border-solid sm:p-1",
+        )}
+      >
         <div className="sm:flex-1">{exercise.question}</div>
         <div className="hidden sm:block">=</div>
         <div className="flex items-center sm:flex-1 sm:gap-2">
           <div
             data-state={revealed ? "revealed" : "hidden"}
-            className="flex-1 border-b-2 border-dotted border-main-identity p-1 text-center text-main-dark transition-all data-[state=hidden]:select-none data-[state=revealed]:select-text data-[state=hidden]:text-opacity-0 data-[state=revealed]:text-opacity-100 dark:border-main-title-light dark:text-main-light data-[state=hidden]:dark:text-opacity-0 data-[state=revealed]:dark:text-opacity-100"
+            className={cn(
+              // Base styles
+              "flex-1 border-b-2 border-dotted p-1 text-center transition-all",
+              // Light mode
+              "border-main-identity text-main-dark",
+              // Dark mode
+              "dark:border-main-title-light dark:text-main-light",
+              // Conditional revealed styles
+              revealed
+                ? // When the answer is revealed
+                  "select-text text-opacity-100 dark:text-opacity-100"
+                : // When the answer is hidden
+                  "select-none text-opacity-0 dark:text-opacity-0",
+            )}
           >
             <Japanese>{exercise.answer}</Japanese>
           </div>

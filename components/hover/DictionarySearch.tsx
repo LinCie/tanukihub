@@ -6,10 +6,15 @@ import { ReactNode, useState } from "react";
 // Radix Imports
 import * as Popover from "@radix-ui/react-popover";
 
-// Custom Component Imports
+// Utils imports
+import { cn } from "@/lib/utils";
+
+// Services imports
 import { Word } from "@/services/dictionaries/jmdict";
 import instance from "@/services/api/api";
-import Spinner from "../loading/Spinner";
+
+// Custom Component Imports
+import Spinner from "@/components/loading/Spinner";
 
 interface ResponseData {
   words: Word[];
@@ -80,7 +85,12 @@ export default function DictionarySearch({
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content
-          className="z-[101] max-w-xs select-none truncate rounded-md bg-main-identity px-3 py-2 text-base text-main-light shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] hover:whitespace-normal focus:outline-none data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-gray-700"
+          className={cn(
+            // Base styles
+            "z-[101] max-w-xs select-none truncate rounded-md bg-main-identity px-3 py-2 text-base text-main-light shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] hover:whitespace-normal focus:outline-none dark:bg-gray-700",
+            // Popover animation styles
+            "data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade",
+          )}
           sideOffset={5}
           side="top"
         >
