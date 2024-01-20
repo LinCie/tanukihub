@@ -10,8 +10,6 @@ const IconButton = ({ icon, className, ...props }: Props) => {
     className: "w-5 h-5 md:w-6 md:h-6",
   });
 
-  const customClass = className ? className : "";
-
   return (
     <button
       className={cn(
