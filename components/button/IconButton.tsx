@@ -1,5 +1,6 @@
-import cn from "@/lib/utils";
 import { cloneElement, ReactElement, ComponentPropsWithoutRef } from "react";
+
+import { cn } from "@/lib/utils";
 
 interface Props extends ComponentPropsWithoutRef<"button"> {
   icon: ReactElement;
@@ -15,6 +16,7 @@ const IconButton = ({ icon, className, ...props }: Props) => {
       className={cn(
         // Base style
         "rounded-full p-3 hover:bg-black hover:bg-opacity-5 focus:outline-2 active:bg-opacity-10",
+
         // Other className
         className,
       )}
