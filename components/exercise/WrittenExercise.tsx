@@ -3,6 +3,8 @@
 import { ComponentPropsWithoutRef, useState } from "react";
 import Link from "next/link";
 
+import { cn } from "@/lib/utils";
+
 import List from "@/components/list/List";
 import WrittenExerciseType from "@/components/exercise/WrittenExerciseType";
 import WrittenExerciseContent from "@/components/exercise/WrittenExerciseContent";
@@ -19,14 +21,12 @@ export default function WrittenExercise({
 }: Props) {
   const [revealed, setRevealed] = useState(false);
 
-  const customClass = className ? className : "";
-
   const handleRevealed = (state: boolean) => {
     setRevealed(state);
   };
 
   return (
-    <div className={`mb-2 sm:mb-3 ${customClass}`.trim()} {...props}>
+    <div className={cn("mb-2 sm:mb-3", className)} {...props}>
       <div className="mb-2 text-sm sm:mb-3 sm:text-base">
         Note: You're encouraged to use dictionaries such as{" "}
         <Link
