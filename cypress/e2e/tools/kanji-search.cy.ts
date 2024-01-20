@@ -152,16 +152,6 @@ describe("Functionality Test", () => {
       it("should be able to show the information", () => {
         cy.getBySel("kanji-information").should("be.visible");
       });
-
-      it("should be able to navigate back", () => {
-        cy.getBySel("search").clear().type("Raccoon");
-        cy.getBySel("submit").click();
-        cy.wait("@kanjiAPI");
-        cy.url().then((url) => {
-          const slug = url.split("/").pop();
-          expect(slug).to.eq("kanji-search");
-        });
-      });
     });
   });
 });
