@@ -7,7 +7,7 @@ interface Props extends ComponentPropsWithoutRef<"button"> {
 
 const IconButton = ({ icon, className, ...props }: Props) => {
   const updatedIcon = cloneElement(icon, {
-    className: "w-5 h-5 md:w-6 md:h-6",
+    className: "size-5 md:size-6",
   });
 
   return (
