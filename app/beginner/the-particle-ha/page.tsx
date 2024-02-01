@@ -1,7 +1,10 @@
+// Next imports
+import { Metadata } from "next";
+
+// Custom component imports
 import BottomNavigation from "@/components/navigation/BottomNavigation";
 import BottomNavigationLink from "@/components/navigation/BottomNavigationLink";
 import PageTitle from "@/components/typography/PageTitle";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "TanukiHub | The Particle 「は」",
