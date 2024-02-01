@@ -1,16 +1,25 @@
-import { InfoCircledIcon } from "@radix-ui/react-icons";
+// React imports
 import { ReactNode, ComponentPropsWithoutRef } from "react";
+
+// Radix imports
+import { InfoCircledIcon } from "@radix-ui/react-icons";
+
+// Utility imports
+import { cn } from "@/lib/utils";
 
 interface Props extends ComponentPropsWithoutRef<"div"> {
   children?: ReactNode;
 }
 
 const KeyPoint = ({ children, className, ...props }: Props) => {
-  const customClass = className ? className : "";
-
   return (
     <div
-      className={`mb-2 rounded-md border-2 border-main-identity p-4 dark:border-main-title-light sm:mb-3 sm:p-5 md:mx-16 ${customClass}`.trim()}
+      className={cn(
+        // Base styles
+        "mb-2 rounded-md border-2 border-main-identity p-4 dark:border-main-title-light sm:mb-3 sm:p-5 md:mx-16",
+        // className props
+        className,
+      )}
       {...props}
     >
       <h3 className="mb-2 flex items-center gap-1 font-medium text-main-title-dark dark:text-main-title-light sm:mb-3 sm:gap-2">

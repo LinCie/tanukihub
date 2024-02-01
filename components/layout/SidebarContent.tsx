@@ -6,6 +6,10 @@ import { usePathname } from "next/navigation";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import * as Accordion from "@radix-ui/react-accordion";
 
+// Utils import
+import { cn } from "@/lib/utils";
+
+// Pages list
 import { pages } from "@/services/pages/pages";
 
 const SidebarContent = () => {
@@ -44,11 +48,15 @@ const SidebarContent = () => {
                     aria-current={pathname === pageLink ? "page" : "false"}
                     data-current={pathname === pageLink ? "page" : "false"}
                     href={pageLink}
-                    className={`block p-3 pl-8 text-sm last-of-type:pb-6 hover:underline ${
-                      pathname === pageLink
-                        ? "font-medium text-main-identity dark:text-main-title-light"
-                        : ""
-                    }`}
+                    className={cn(
+                      // Base styles
+                      "block p-3 pl-8 text-sm last-of-type:pb-6 hover:underline",
+                      // Current path styles
+                      {
+                        "font-medium text-main-identity dark:text-main-title-light":
+                          pathname === pageLink,
+                      },
+                    )}
                   >
                     {link.name}
                   </Link>

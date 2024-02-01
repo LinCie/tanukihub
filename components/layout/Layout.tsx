@@ -22,6 +22,9 @@ import SidebarContent from "@/components/layout/SidebarContent";
 // React Spring Imports
 import { animated, useSpring } from "@react-spring/web";
 
+// Utils import
+import { cn } from "@/lib/utils";
+
 const Layout = () => {
   // State to manage the visibility of the sidebar
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -162,10 +165,13 @@ const Layout = () => {
       {/* Sidebar section */}
       <animated.nav
         style={sidebarSprings}
-        // eslint-disable-next-line tailwindcss/enforces-shorthand
-        className={`fixed inset-y-0 left-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16 ${
-          sidebarOpen ? "md:left-0" : "md:left-[300px]"
-        }`}
+        className={cn(
+          // Base styles
+          "fixed inset-y-0 left-0 z-[99] h-screen border-r-2 bg-white pt-14 dark:border-r-gray-800 dark:bg-gray-900 md:pt-16",
+
+          // Sidebar state styles
+          sidebarOpen ? "md:left-0" : "md:left-[300px]",
+        )}
         aria-live="polite"
       >
         {/* Sidebar Content */}
@@ -175,11 +181,13 @@ const Layout = () => {
       </animated.nav>
       {/* Sidebar Overlay */}
       <animated.div
-        // eslint-disable-next-line tailwindcss/enforces-shorthand
-        className={`
-          fixed z-[98] h-screen w-screen overflow-auto bg-black md:hidden ${
-            sidebarOpen ? "block" : "hidden"
-          }`}
+        className={cn(
+          // Base styles
+          "fixed z-[98] h-screen w-screen overflow-auto bg-black md:hidden",
+
+          // Sidebar state styles
+          sidebarOpen ? "block" : "hidden",
+        )}
         style={overlaySprings}
         onClick={handleSidebarOpen}
       />

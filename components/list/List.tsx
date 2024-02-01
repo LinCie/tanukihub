@@ -1,4 +1,8 @@
+// React imports
 import { ReactNode, ComponentPropsWithoutRef } from "react";
+
+// Utility imports
+import { cn } from "@/lib/utils";
 
 interface Props extends ComponentPropsWithoutRef<"ul"> {
   children?: ReactNode;
@@ -13,14 +17,18 @@ export default function List({
   className,
   ...props
 }: Props) {
-  const customClass = className ? className : "";
-
-  const listType = type === "disc" ? "list-disc" : "list-decimal";
-  const listPosition = position === "inside" ? "list-inside" : "list-outside";
-
   return (
     <ul
-      className={`${listType} ${listPosition} ${customClass}`.trim()}
+      className={cn(
+        // Base styles
+        className,
+
+        // List Type bariant
+        type === "disc" ? "list-disc" : "list-decimal",
+
+        // List Position bariant
+        position === "inside" ? "list-inside" : "list-outside",
+      )}
       {...props}
     >
       {children}

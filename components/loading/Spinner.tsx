@@ -1,15 +1,23 @@
+// React imports
 import { ComponentPropsWithoutRef } from "react";
+
+// Utility imports
+import { cn } from "@/lib/utils";
 
 interface Props extends ComponentPropsWithoutRef<"svg"> {}
 
 export default function Spinner({ className, ...props }: Props) {
-  const customClass = className ? className : "";
-
   return (
     <div role="status">
       <svg
         aria-hidden="true"
-        className={`animate-spin fill-main-identity text-gray-200 dark:fill-main-title-light dark:text-gray-600 ${customClass}`.trim()}
+        className={cn(
+          // Base styles
+          "animate-spin fill-main-identity text-gray-200 dark:fill-main-title-light dark:text-gray-600",
+
+          // Custom classname
+          className,
+        )}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

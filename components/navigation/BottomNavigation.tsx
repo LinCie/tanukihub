@@ -1,4 +1,8 @@
+// React imports
 import { ReactNode, ComponentPropsWithoutRef } from "react";
+
+// Utility imports
+import { cn } from "@/lib/utils";
 
 interface Props extends ComponentPropsWithoutRef<"div"> {
   children?: ReactNode;
@@ -9,12 +13,16 @@ export default function BottomNavigation({
   className,
   ...props
 }: Props) {
-  const customClass = className ? className : "";
-
   return (
     <div
       id="bottom-navigation"
-      className={`my-10 flex w-full select-none items-center justify-between ${customClass}`.trim()}
+      className={cn(
+        // Base styles
+        "my-10 flex w-full select-none items-center justify-between",
+
+        // Custom classname
+        className,
+      )}
       {...props}
     >
       {children}
