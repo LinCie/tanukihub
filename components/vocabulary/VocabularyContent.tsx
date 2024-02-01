@@ -1,8 +1,11 @@
+// React imports
+import { ComponentPropsWithoutRef } from "react";
+
+// Custom component imports
 import VocabularyType from "@/components/vocabulary/VocabularyType";
 import ListContent from "@/components/list/ListContent";
 import DictionarySearch from "@/components/hover/DictionarySearch";
 import Japanese from "@/components/typography/Japanese";
-import { ComponentPropsWithoutRef } from "react";
 
 interface Props extends ComponentPropsWithoutRef<"li"> {
   vocabulary: VocabularyType;
