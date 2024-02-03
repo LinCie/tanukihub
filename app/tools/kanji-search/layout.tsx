@@ -19,6 +19,9 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 
+// Utility imports
+import { cn } from "@/lib/utils";
+
 // Local Imports
 import instance from "@/services/api/api";
 import PageTitle from "@/components/typography/PageTitle";
@@ -167,7 +170,12 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
           />
         </div>
         <div
-          className={`flex gap-2 ${watchLang === "jp" ? "block" : "hidden"}`}
+          className={cn(
+            // Base styles
+            "flex gap-2",
+            // Block visibility togle
+            watchLang === "jp" ? "block" : "hidden",
+          )}
         >
           <div className="font-bold">Search by: </div>
           <Controller
