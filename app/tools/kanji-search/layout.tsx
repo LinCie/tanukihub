@@ -89,6 +89,7 @@ const SearchForm = ({ setCharacters, setLoading }: SearchFormProps) => {
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     try {
       setLoading(true);
+      setCharacters([]);
 
       if (pathname !== "/tools/kanji-search/") {
         router.push("/tools/kanji-search/");
