@@ -12,6 +12,8 @@ import ExampleType from "@/components/example/ExampleType";
 import Example from "@/components/example/Example";
 import VocabularyType from "@/components/vocabulary/VocabularyType";
 import Vocabulary from "@/components/vocabulary/Vocabulary";
+import WrittenExercise from "@/components/exercise/WrittenExercise";
+import WrittenExerciseType from "@/components/exercise/WrittenExerciseType";
 
 export const metadata: Metadata = {
   title: "TanukiHub | The Particle 「は」",
@@ -66,11 +68,40 @@ const TopicMarkerSection = () => {
   );
 };
 
+const WrittenExerciseSection = () => {
+  const exercises: WrittenExerciseType[] = [
+    {
+      question: "That is a giraffe",
+      answer: "あれは麒麟です",
+    },
+    {
+      question: "Kimura is an office worker",
+      answer: "木村さんは社員です",
+    },
+    {
+      question: "I'm a bank clerk",
+      answer: "私は銀行員です",
+    },
+    {
+      question: "He is a police",
+      answer: "彼は警察です",
+    },
+  ];
+
+  return (
+    <section id="written-exercise">
+      <SectionTitle>Written Exercise</SectionTitle>
+      <WrittenExercise exercises={exercises} />
+    </section>
+  );
+};
+
 export default function Page() {
   return (
     <div id="the-particle-ha">
       <PageTitle>The Particle 「は」</PageTitle>
       <TopicMarkerSection />
+      <WrittenExerciseSection />
       <BottomNavigation>
         <BottomNavigationLink href="/beginner/the-partivle-ga">
           The Particle 「が」
