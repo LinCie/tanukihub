@@ -8,12 +8,42 @@ import PageTitle from "@/components/typography/PageTitle";
 import SectionTitle from "@/components/typography/SectionTitle";
 import Paragraph from "@/components/typography/Paragraph";
 import Japanese from "@/components/typography/Japanese";
+import ExampleType from "@/components/example/ExampleType";
+import Example from "@/components/example/Example";
+import VocabularyType from "@/components/vocabulary/VocabularyType";
+import Vocabulary from "@/components/vocabulary/Vocabulary";
 
 export const metadata: Metadata = {
   title: "TanukiHub | The Particle 「は」",
 };
 
 const TopicMarkerSection = () => {
+  const vocabularies: VocabularyType[] = [
+    {
+      kanji: "鉛筆",
+      searchFor: "鉛筆",
+      reading: "えんぴつ",
+      meaning: "Pencil",
+    },
+    {
+      kanji: "医者",
+      searchFor: "医者",
+      reading: "いしゃ",
+      meaning: "Doctor",
+    },
+  ];
+  const examples: ExampleType[] = [
+    {
+      kana: "これは鉛筆です",
+      romaji: "これはえんぴつです",
+      translation: "This is a pencil",
+    },
+    {
+      kana: "キムさんは医者です",
+      romaji: "キムさんはいしゃです",
+      translation: "Kim is a doctor",
+    },
+  ];
   return (
     <section id="topic-marker-section">
       <SectionTitle>The Topic Marker 「は」</SectionTitle>
@@ -30,6 +60,8 @@ const TopicMarkerSection = () => {
         a smoother flow in Japanese discourse, and it contrasts with English,
         where the subject of a sentence can change more frequently.
       </Paragraph>
+      <Vocabulary vocabularies={vocabularies} />
+      <Example examples={examples} />
     </section>
   );
 };
@@ -43,7 +75,9 @@ export default function Page() {
         <BottomNavigationLink href="/beginner/the-partivle-ga">
           The Particle 「が」
         </BottomNavigationLink>
-        <BottomNavigationLink href="/">Lorem Ipsum</BottomNavigationLink>
+        <BottomNavigationLink right href="/">
+          Lorem Ipsum
+        </BottomNavigationLink>
       </BottomNavigation>
     </div>
   );
