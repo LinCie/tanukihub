@@ -21,10 +21,10 @@ export default function Example({ examples, className, ...props }: Props) {
           "mb-2 flex items-center gap-1 border-b-2 pb-1 text-sm font-bold",
 
           // Light mode classes
-          "border-main-identity text-main-title-dark",
+          "border-main-identity/75 text-main-title-dark",
 
           // Dark mode classes
-          "dark:border-main-title-light dark:text-main-title-light",
+          "dark:border-main-title-light/75 dark:text-main-title-light",
 
           // Small screen breakpoint
           "sm:mb-3 sm:gap-2 sm:text-base",
